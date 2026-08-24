@@ -45,6 +45,9 @@
  .putih1{
     color:#F2F2F2 !important;   
  }
+ .abu{
+    color: #757575 !important;
+ }
  /* year portfolio */
 .year-nav a {
     display: flex;
@@ -160,6 +163,10 @@
     font-size: 25px;
 }
 
+.thumbnail{
+    height: 38rem !important;
+}
+
 .year-column::after {
     content: "";
     position: absolute;
@@ -183,6 +190,9 @@
  }
  .bg-putih1{
     background-color: #F2F2F2 !important;
+ }
+ .bg-cyan-tp{
+      background: rgba(1, 162, 162, 0.1) !important ;
  }
  /* .bg-transparan{
     background-color: transparent !important;
@@ -346,6 +356,9 @@
         .year-nav h1 {
         font-size: 1.5rem;
     }
+    .thumbnail{
+    height: 25rem !important;
+}
 
     .year-nav a:hover,
     .year-nav a.active {

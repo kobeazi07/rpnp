@@ -5,18 +5,18 @@
     <div class="container-fluid bg-breadcrumb"
         style="   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(frontend/img/h-jumbo.webp);">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4">Blog</h1>
+            <h3 class="text-white display-3 mb-4">Carerr</h1>
 
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="index.html " class="hijau-1">Home</a></li>
                     <li class="breadcrumb-item"><a href="#" class="hijau-1">Pages</a></li>
-                    <li class="breadcrumb-item active text-white">Blog</li>
+                    <li class="breadcrumb-item active text-white">Carerr</li>
                 </ol>
         </div>
     </div>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <ul class="nav nav-pills row w-100 mb-3" id="pills-tab" role="tablist">
+            <ul class="nav nav-pills justify-content-center row w-100 mb-3" id="pills-tab" role="tablist">
 
                 <li class="nav-item col-lg-2" role="presentation">
                     <button class="nav-link active w-100 rounded-btn fw-bold" id="pills-home-tab" data-bs-toggle="pill"
@@ -30,37 +30,31 @@
                     <button class="nav-link w-100 rounded-btn fw-bold" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        Trends
+                        New
                     </button>
                 </li>
                 <li class="nav-item col-lg-2 " role="presentation">
                     <button class="nav-link w-100 rounded-btn fw-bold" id="pills-innovation-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-innovation" type="button" role="tab" aria-controls="pills-innovation"
                         aria-selected="false">
-                        Innovations
+                        Arsitek
                     </button>
                 </li>
                 <li class="nav-item col-lg-2" role="presentation">
                     <button class="nav-link w-100 rounded-btn fw-bold" id="pills-regulation-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-regulation" type="button" role="tab" aria-controls="pills-regulation"
                         aria-selected="false">
-                        Regulation
+                        Struktur
                     </button>
                 </li>
                 <li class="nav-item col-lg-2" role="presentation">
                     <button class="nav-link w-100 rounded-btn fw-bold" id="pills-workshop-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-workshop" type="button" role="tab" aria-controls="pills-workshop"
                         aria-selected="false">
-                        Workshop
+                        Out of Date
                     </button>
                 </li>
-                <li class="nav-item col-lg-2" role="presentation">
-                    <button class="nav-link w-100 rounded-btn fw-bold" id="pills-asociation-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-asociation" type="button" role="tab" aria-controls="pills-asociation"
-                        aria-selected="false">
-                        Asociation
-                    </button>
-                </li>
+
             </ul>
             <div class="row">
                 <div class="tab-content" id="pills-tabContent">
@@ -75,11 +69,9 @@
                                         alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -98,15 +90,13 @@
                         <div class="row justify-content-center mt-5 ">
                             <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
                                 <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
+                                    <img src="{{ asset('frontend/img/events-1.jpg') }}" class="img-fluid w-100 rounded-atas"
+                                        alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -122,11 +112,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -148,11 +136,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -168,11 +154,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -188,11 +172,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -214,11 +196,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -234,11 +214,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -254,11 +232,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -274,11 +250,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -300,11 +274,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -320,11 +292,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -340,11 +310,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -360,11 +328,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -380,11 +346,9 @@
                                         class="img-fluid w-100 rounded-atas" alt="Image">
                                     <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
+                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
+                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
+                                        <p class="mb-4">Dealine : 30 September 2026</p>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                 href="#">Read
@@ -396,132 +360,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pills-asociation" role="tabpanel"
-                        aria-labelledby="pills-asociation-tab" tabindex="0">
 
-                        <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

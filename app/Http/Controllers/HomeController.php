@@ -20,4 +20,20 @@ class HomeController extends Controller
     {
         return view('frontend.pages.blog');
     }
+    public function dblog()
+    {
+        return view('frontend.pages.dblog');
+    }
+    public function carerr()
+    {
+        return view('frontend.pages.carerr');
+    }
+    public function dcarerr()
+    {
+        return view('frontend.pages.dcarerr');
+    }
+    public function dportfolio()
+    {
+        return view('frontend.pages.dportfolio');
+    }
 }
