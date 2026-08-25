@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('nama_lengkap');
             $table->string('jabatan')->nullable();
+            $table->string('jabatan')->nullable();
             $table->timestamps();
         });
     }

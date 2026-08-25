@@ -23,10 +23,65 @@
               <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>About</span></a>
       </li>
-      <li class="nav-item {{ Route::is('HalamanAdminFaq') ? 'active' : '' }}">
-          <a class="nav-link" href="{{ Route('HalamanAdminFaq') }}">
+      <li class="nav-item {{ Route::is('HalamanAdminpartner') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ Route('HalamanAdminpartner') }}">
               <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>FAQ</span></a>
+              <span>Partner</span></a>
+      </li>
+      <li class="nav-item {{ Route::is('HalamanAdminservices') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdminservices') }}">
+              <i class="fas fa-fw fa-concierge-bell"></i>
+              <span>Services</span>
+          </a>
+      </li>
+
+      <li class="nav-item {{ Route::is('HalamanAdmintestimoni') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdmintestimoni') }}">
+              <i class="fas fa-fw fa-comments"></i>
+              <span>Testimoni</span>
+          </a>
+      </li>
+
+      <li class="nav-item {{ Route::is('HalamanAdminklasifikasi') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdminklasifikasi') }}">
+              <i class="fas fa-fw fa-list"></i>
+              <span>Klasifikasi</span>
+          </a>
+      </li>
+
+      <li class="nav-item {{ Route::is('HalamanAdmingaleri') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdmingaleri') }}">
+              <i class="fas fa-fw fa-images"></i>
+              <span>Galeri</span>
+          </a>
+      </li>
+
+      <li class="nav-item {{ Route::is('HalamanAdminstaff') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdminstaff') }}">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Staff</span>
+          </a>
+      </li>
+
+      <li class="nav-item {{ Route::is('HalamanAdminkategori_career') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdminkategori_career') }}">
+              <i class="fas fa-fw fa-tags"></i>
+              <span>Kategori Career</span>
+          </a>
+      </li>
+
+      <li class="nav-item {{ Route::is('HalamanAdminbuilding_type') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdminbuilding_type') }}">
+              <i class="fas fa-fw fa-building"></i>
+              <span>Building Type</span>
+          </a>
+      </li>
+
+      <li class="nav-item {{ Route::is('HalamanAdminkategori_blog') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ route('HalamanAdminkategori_blog') }}">
+              <i class="fas fa-fw fa-folder"></i>
+              <span>Kategori Blog</span>
+          </a>
       </li>
 
 
