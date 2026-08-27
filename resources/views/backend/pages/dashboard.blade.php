@@ -33,14 +33,15 @@
                             <input type="text" value="{{ $cv->meta }}" class="form-control" name="meta"
                                 id="exampleFormControlInput1" placeholder="masukkan portfolio">
                         </div>
+
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Harga/Liter</label>
-                            <input type="number" value="{{ $cv->price }}" class="form-control" name="harga"
+                            <label for="exampleFormControlInput1">No Wa</label>
+                            <input type="number" value="{{ $cv->no_wa }}" class="form-control" name="nowa"
                                 id="exampleFormControlInput1" placeholder="masukkan portfolio">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">No Wa</label>
-                            <input type="number" value="{{ $cv->no_wa }}" class="form-control" name="nowa"
+                            <input type="text" value="{{ $cv->email }}" class="form-control" name="email"
                                 id="exampleFormControlInput1" placeholder="masukkan portfolio">
                         </div>
 
@@ -57,6 +58,10 @@
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Link Tiktok</label>
                             <textarea class="form-control" id="link_tiktok" name="link_tiktok" placeholder="masukkan portfolio">{{ $cv->link_tiktok }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Link Linkedin</label>
+                            <textarea class="form-control" id="link_linkedin" name="link_linkedin" placeholder="masukkan portfolio">{{ $cv->link_linkedin }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Text WA</label>

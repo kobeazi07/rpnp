@@ -8,8 +8,7 @@
             <h3 class="text-white display-3 mb-4">Blog</h1>
 
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="index.html " class="hijau-1">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="hijau-1">Pages</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('HalamanHome') }} " class="hijau-1">Home</a></li>
                     <li class="breadcrumb-item active text-white">Blog</li>
                 </ol>
         </div>
@@ -69,457 +68,193 @@
 
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}" class="img-fluid w-100 rounded-atas"
-                                        alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($blog as $blog)
+                                {{-- all --}}
+                                <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                    <div class="event-item ">
+                                        <img src="{{ $blog->foto }}" class="img-fluid w-100 rounded-atas" alt="Image">
+                                        <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                            <h4 class="fw-bold blog-title-2-line">
+                                                {{ $blog->judul }}
+                                            </h4>
+                                            <div class="blog-description-2-line">
+                                                {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4 justify-content-start">
+                                                <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                    href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
+                                                    More</a>
+                                            </div>
+
                                         </div>
-
                                     </div>
                                 </div>
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                         tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($blogs as $blogs)
+                                {{-- Trends --}}
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                    <div class="event-item ">
+                                        <img src="{{ $blogs->foto }}" class="img-fluid w-100 rounded-atas"
+                                            alt="Image">
+                                        <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+
+                                            <h4 class="fw-bold blog-title-2-line">
+                                                {{ $blog->judul }}
+                                            </h4>
+
+                                            <div class="blog-description-2-line">
+                                                {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4 justify-content-start">
+                                                <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                    href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
+                                                    More</a>
+                                            </div>
+
                                         </div>
-
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-innovation" role="tabpanel"
                         aria-labelledby="pills-innovation-tab" tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($blogss as $blogss)
+                                @if ($blogss->rkategori_blog && $blogss->rkategori_blog->nama == 'Innovations')
+                                    {{-- Innovations --}}
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $blogss->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                                <h4 class="fw-bold blog-title-2-line">
+                                                    {{ $blog->judul }}
+                                                </h4>
+
+                                                <div class="blog-description-2-line">
+                                                    {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4 justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-regulation" role="tabpanel"
                         aria-labelledby="pills-regulation-tab" tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($rblogssss as $rblogssss)
+                                @if ($rblogssss->rkategori_blog && $rblogssss->rkategori_blog->nama == 'Regulation')
+                                    {{-- Regulation --}}
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $rblogssss->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                                <h4 class="fw-bold blog-title-2-line">
+                                                    {{ $blog->judul }}
+                                                </h4>
+
+                                                <div class="blog-description-2-line">
+                                                    {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4 justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-workshop" role="tabpanel" aria-labelledby="pills-workshop-tab"
                         tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($blogsss as $blogsss)
+                                @if ($blogsss->rkategori_blog && $blogsss->rkategori_blog->nama == 'Workshop')
+                                    {{-- Workshop --}}
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $blogsss->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                                <h4 class="fw-bold blog-title-2-line">
+                                                    {{ $blog->judul }}
+                                                </h4>
+
+                                                <div class="blog-description-2-line">
+                                                    {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4 justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-asociation" role="tabpanel"
                         aria-labelledby="pills-asociation-tab" tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($blogssss as $blogssss)
+                                @if ($blogssss->rkategori_blog && $blogssss->rkategori_blog->nama == 'Asociation')
+                                    {{-- association --}}
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $blogssss->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                                <h4 class="fw-bold blog-title-2-line">
+                                                    {{ $blog->judul }}
+                                                </h4>
+
+                                                <div class="blog-description-2-line">
+                                                    {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4 justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Dr.Abdul Muhammad.ST.MT</h4>
-                                        <h6 class="mb-4 hijau-1">Kepala Bagian BPJN PUPR Kalbar</h6>
-                                        <p class="mb-4">Lorem ipsum dolor sit amet consectur adip sed eiusmod amet
-                                            consectur adip sed
-                                            eiusmod tempor.</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>

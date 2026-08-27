@@ -13,14 +13,20 @@ return new class extends Migration
     {
         Schema::create('portfolio', function (Blueprint $table) {
             $table->id();
+            $table->string('judul');
             $table->foreignId('buildingtype_id')
                 ->constrained('building_type')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
+            $table->foreignId('kategori_portfolio_id')
+                ->constrained('kategori_portfolio')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
 
             $table->text('sow')->nullable();
+            $table->text('foto')->nullable();
             $table->text('deskripsi')->nullable();
-            $table->year('tahun')->nullable();
+            $table->integer('tahun')->nullable();
             $table->timestamps();
         });
     }

@@ -10,4 +10,9 @@ class Tag extends Model
     use HasFactory;
     protected $table = 'tag';
     protected $guarded = [];
+
+    public function Rtag_blog()
+    {
+        return $this->hasMany(T_Blog::class, 'tag_id');
+    }
 }

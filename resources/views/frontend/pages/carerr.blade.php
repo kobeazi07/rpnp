@@ -5,12 +5,11 @@
     <div class="container-fluid bg-breadcrumb"
         style="   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(frontend/img/h-jumbo.webp);">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4">Carerr</h1>
+            <h3 class="text-white display-3 mb-4">Career</h1>
 
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="index.html " class="hijau-1">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="hijau-1">Pages</a></li>
-                    <li class="breadcrumb-item active text-white">Carerr</li>
+                    <li class="breadcrumb-item"><a href="{{ route('HalamanHome') }}" class="hijau-1">Home</a></li>
+                    <li class="breadcrumb-item active text-white">Career</li>
                 </ol>
         </div>
     </div>
@@ -61,26 +60,28 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                         tabindex="0">
 
-
+                        {{-- all --}}
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}" class="img-fluid w-100 rounded-atas"
-                                        alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($career as $career)
+                                <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                    <div class="event-item ">
+                                        <img src="{{ $career->foto }}" class="img-fluid w-100 rounded-atas" alt="Image">
+                                        <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                            <h4 class="fw-bold">{{ $career->judul }}</h4>
+                                            <h6 class="mb-2 hijau-1">Lokasi: {{ $career->location }}</h6>
+                                            <p class="mb-4">Dealine : {{ $career->deadline }}</p>
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                    href="{{ route('HalamanDCarerr', ['id' => $career->id]) }}">Read
+                                                    More</a>
+                                            </div>
+
                                         </div>
-
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
+
 
                         </div>
                     </div>
@@ -88,276 +89,113 @@
                         tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}" class="img-fluid w-100 rounded-atas"
-                                        alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($careers as $careers)
+                                {{-- new --}}
+                                <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                    <div class="event-item ">
+                                        <img src="{{ $careers->foto }}" class="img-fluid w-100 rounded-atas" alt="Image">
+                                        <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                            <h4 class="fw-bold">{{ $careers->judul }}</h4>
+                                            <h6 class="mb-2 hijau-1">Lokasi: {{ $careers->location }}</h6>
+                                            <p class="mb-4">Dealine : {{ $career->deadline }}</p>
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                    href="{{ route('HalamanDCarerr', ['id' => $career->id]) }}">Read
+                                                    More</a>
+                                            </div>
+
                                         </div>
-
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-innovation" role="tabpanel"
                         aria-labelledby="pills-innovation-tab" tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($careerss as $careerss)
+                                @if ($careerss->Rkategori_career && $careerss->Rkategori_career->nama == 'Arsitek')
+                                    {{-- arsitek --}}
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $careerss->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                                <h4 class="fw-bold">{{ $careerss->judul }}</h4>
+                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careerss->location }}</h6>
+                                                <p class="mb-4">Dealine : {{ $careerss->deadline }}</p>
+                                                <div class="d-flex align-items-center justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDCarerr', ['id' => $career->id]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-regulation" role="tabpanel"
                         aria-labelledby="pills-regulation-tab" tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            {{-- struktur --}}
+                            @foreach ($careersss as $careersss)
+                                @if ($careersss->Rkategori_career && $careersss->Rkategori_career->nama == 'Struktur')
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $careersss->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                                <h4 class="fw-bold">{{ $careersss->judul }}</h4>
+                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careersss->location }}</h6>
+                                                <p class="mb-4">Dealine : {{ $careersss->deadline }}</p>
+                                                <div class="d-flex align-items-center justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDCarerr', ['id' => $career->id]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-workshop" role="tabpanel" aria-labelledby="pills-workshop-tab"
                         tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+                            @foreach ($careerssss as $careerssss)
+                                @if (Carbon\Carbon::parse($careerssss->deadline)->lt(Carbon\Carbon::today()))
+                                    {{-- out of date --}}
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $careerssss->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
+                                                <h4 class="fw-bold">{{ $careerssss->judul }}</h4>
+                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careerssss->location }}</h6>
+                                                <p class="mb-4">Dealine : {{ $careerssss->deadline }}</p>
+                                                <div class="d-flex align-items-center justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDCarerr', ['id' => $career->id]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                <div class="event-item ">
-                                    <img src="{{ asset('frontend/img/events-1.jpg') }}"
-                                        class="img-fluid w-100 rounded-atas" alt="Image">
-                                    <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                        <h4 class="fw-bold">Fulltime Junior Urban Design/Planning</h4>
-                                        <h6 class="mb-2 hijau-1">Lokasi: Pontianak</h6>
-                                        <p class="mb-4">Dealine : 30 September 2026</p>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                href="#">Read
-                                                More</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
 

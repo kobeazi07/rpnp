@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('blog', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('judul');
             $table->text('deskripsi')->nullable();
-
+            $table->text('foto')->nullable();
             $table->foreignId('kategori_id')
                 ->constrained('kategori_blog')
                 ->cascadeOnUpdate()

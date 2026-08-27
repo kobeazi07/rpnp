@@ -22,9 +22,9 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
 
-            $table->text('requirement')->nullable();
+            $table->longText('requirement')->nullable();
             $table->string('link_daftar')->nullable();
-
+            $table->text('foto')->nullable();
             $table->timestamps();
         });
     }

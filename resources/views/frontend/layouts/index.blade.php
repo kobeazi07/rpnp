@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Environs - Environmental & Nature Website Template</title>
+    @php
+        $setting = App\Models\Setting::first();
+    @endphp
+    <title>{{ $setting->tittle }}</title>
+    <meta name="description" content="{{ $setting->description }}">
+    <meta name="keywords" content="{{ $setting->meta }}">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
+    <link rel="icon" type="image/png" href="{{ asset('frontend/img/logorpnp.png') }}">
     @include('frontend.includes.style')
 </head>
 

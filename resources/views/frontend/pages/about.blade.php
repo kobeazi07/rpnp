@@ -8,8 +8,7 @@
             <h3 class="text-white display-3 mb-4">About Us</h1>
 
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="index.html " class="hijau-1">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="hijau-1">Pages</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('HalamanHome') }} " class="hijau-1">Home</a></li>
                     <li class="breadcrumb-item active text-white">About Us</li>
                 </ol>
         </div>
@@ -26,9 +25,8 @@
                 </div>
                 <div class="col-xl-7">
                     <h5 class="text-uppercase hijau-1">About Us</h5>
-                    <h1 class="mb-4 fw-bold">PT. RPNP Desain Hijau Indonesia</h1>
-                    <p class="fs-5 mb-4"> PT. RPNP Desain Hijau Indonesia merupakan Konsultan Konstruksi dan Non-Konstruksi
-                        yang berfokus pada Konsultansi Bangunan Hijau dan Sustainable Energy Managemen
+                    <h1 class="mb-4 fw-bold">{{ $about->judul }}</h1>
+                    <p class="fs-5 mb-4"> {!! str_replace('&nbsp;', ' ', $about->deskripsi) !!}
                     </p>
 
                 </div>
@@ -43,53 +41,22 @@
         <div class="container py-5">
             <div class="row mb-5">
                 <h1 class="fw-bold text-white mb-4">VISI</h1>
-                <h4 class="text-white"> To create a sustainable future by pioneering innovative, energy-efficient and
-                    environmentally friendly building solutions that are in harmony with nature and improve the quality of
-                    life for future generations.</h4>
+                <div class="mb-4 about-description">
+                    {!! str_replace('&nbsp;', ' ', $about->visi) !!}
+                </div>
             </div>
             <div class="row ">
                 <h1 class="fw-bold text-white mb-4">MISI</h1>
-                <ul class="text-white">
-                    <li>
-                        <strong>Creative Design:</strong> We’re committed to designing buildings that are both beautiful and
-                        sustainable, using innovative approaches to make energy-efficient spaces that people love to live
-                        and work in.
-                    </li>
-
-                    <li>
-                        <strong>Sustainable Solutions:</strong> Our goal is to lead the way in green building, offering
-                        practical solutions that reduce environmental impact and promote long-term sustainability.
-                    </li>
-
-                    <li>
-                        <strong>Client Partnership:</strong> We work hand-in-hand with our clients, listening to their needs
-                        and tailoring our services to create spaces that reflect their vision while also being
-                        environmentally responsible.
-                    </li>
-
-                    <li>
-                        <strong>Holistic Approach:</strong> By combining architecture, engineering, and planning, we create
-                        integrated solutions that make buildings not just green, but also adaptable and ready for the
-                        future.
-                    </li>
-
-                    <li>
-                        <strong>Quality and Integrity:</strong> We strive to deliver excellent work, always with an eye on
-                        quality and a commitment to doing the right thing for both our clients and the planet.
-                    </li>
-
-                    <li>
-                        <strong>Inspiring Change:</strong> We believe in the power of example, inspiring others to embrace
-                        sustainable practices through our dedication to green building and education.
-                    </li>
-                </ul>
+                <div class="mb-4 about-description">
+                    {!! str_replace('&nbsp;', ' ', $about->misi) !!}
+                </div>
             </div>
         </div>
     </div>
     <!-- Volunteers End -->
 
     {{-- direksi --}}
-    <section id = "team">
+    <section id = "ourteam" class="ourteam section">
         <div class="container mt-5 ">
             <div class="d-flex justify-content-center">
                 <ul class="nav nav-pills row w-100 mb-3" id="pills-tab" role="tablist">
@@ -122,166 +89,58 @@
                                 style="background: linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.800)), url({{ asset('frontend/img/jumbotron.webp') }}) center center; background-size: cover;">
                                 <div class="text-left ms-4 me-4 " style="max-width: 800px;">
                                     <h1 class="text-uppercase text-white fw-bold">Profile Our Executive Team</h1>
-                                    <p class="text-white mb-0">Meet the experienced leaders behind RPNP, driving innovation,
-                                        collaboration, and sustainable solutions with expertise and a shared vision for a
+                                    <p class="text-white mb-0">Meet the experienced leaders behind RPNP, driving
+                                        innovation,
+                                        collaboration, and sustainable solutions with expertise and a shared vision for
+                                        a
                                         better future.
                                 </div>
 
                             </div>
                         </div>
                         <div class="row justify-content-center ">
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
+                            @foreach ($staff as $dataStaff)
+                                @if ($dataStaff->status == 'direksi')
+                                    <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="portfolio-staff-card">
 
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-1.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
+                                            <!-- Gambar -->
+                                            <img src="  {{ $dataStaff->foto }}" class="portfolio-staff-img" alt="...">
 
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
+                                            <!-- Overlay hitam 70% -->
+                                            <div class="portfolio-overlay"></div>
 
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
+                                            <!-- Konten di atas overlay -->
+                                            <div class="portfolio-content">
 
-                                        <div class="row h-100">
+                                                <div class="row h-100">
 
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
+                                                    <!-- Kolom kiri -->
+                                                    <div class="col-12 d-flex flex-column justify-content-between">
+                                                        <div>
+                                                        </div>
 
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
+                                                        <div class="portfolio-staff rounded-btn justify-content-center ">
+                                                            <h4 class="text-white text-center fw-bold">
+                                                                {{ $dataStaff->nama_lengkap }}
+                                                            </h4>
+                                                            <small class="text-center"> {{ $dataStaff->jabatan }}</small>
 
-                                                </div>
+                                                        </div>
 
-                                            </div>
+                                                    </div>
 
-                                            <!-- Kolom kanan -->
+                                                    <!-- Kolom kanan -->
 
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
-
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-1.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
-
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
-
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
-
-                                        <div class="row h-100">
-
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
-
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
 
                                                 </div>
 
                                             </div>
 
-                                            <!-- Kolom kanan -->
-
-
                                         </div>
-
                                     </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
-
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-1.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
-
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
-
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
-
-                                        <div class="row h-100">
-
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
-
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
-
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Kolom kanan -->
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
-
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-1.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
-
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
-
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
-
-                                        <div class="row h-100">
-
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
-
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
-
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Kolom kanan -->
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
@@ -292,8 +151,10 @@
                                 style="background: linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.800)), url({{ asset('frontend/img/jumbotron.webp') }}) center center; background-size: cover;">
                                 <div class="text-left ms-4 me-4 " style="max-width: 800px;">
                                     <h1 class="text-uppercase text-white fw-bold">Profile Our Staff</h1>
-                                    <p class="text-white mb-0">Explore our professional team, bringing together experienced
-                                        experts dedicated to delivering quality, innovative, and sustainable solutions for
+                                    <p class="text-white mb-0">Explore our professional team, bringing together
+                                        experienced
+                                        experts dedicated to delivering quality, innovative, and sustainable solutions
+                                        for
                                         every
                                         project.
 
@@ -302,158 +163,48 @@
                             </div>
                         </div>
                         <div class="row justify-content-center ">
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
+                            @foreach ($staff as $dataStaff)
+                                @if ($dataStaff->status == 'staff')
+                                    <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="portfolio-staff-card">
 
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-2.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
+                                            <!-- Gambar -->
+                                            <img src="{{ $dataStaff->foto }}" class="portfolio-staff-img" alt="...">
 
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
+                                            <!-- Overlay hitam 70% -->
+                                            <div class="portfolio-overlay"></div>
 
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
+                                            <!-- Konten di atas overlay -->
+                                            <div class="portfolio-content">
 
-                                        <div class="row h-100">
+                                                <div class="row h-100">
 
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
+                                                    <!-- Kolom kiri -->
+                                                    <div class="col-12 d-flex flex-column justify-content-between">
+                                                        <div>
+                                                        </div>
 
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
+                                                        <div class="portfolio-staff rounded-btn justify-content-center ">
+                                                            <h4 class="text-white text-center fw-bold">
+                                                                {{ $dataStaff->nama_lengkap }}
+                                                            </h4>
+                                                            <small class="text-center"> {{ $dataStaff->jabatan }}</small>
 
-                                                </div>
+                                                        </div>
 
-                                            </div>
+                                                    </div>
 
-                                            <!-- Kolom kanan -->
+                                                    <!-- Kolom kanan -->
 
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
-
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-2.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
-
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
-
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
-
-                                        <div class="row h-100">
-
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
-
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
 
                                                 </div>
 
                                             </div>
 
-                                            <!-- Kolom kanan -->
-
-
                                         </div>
-
                                     </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
-
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-2.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
-
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
-
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
-
-                                        <div class="row h-100">
-
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
-
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
-
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Kolom kanan -->
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-3 mb-3 me-1 ms-1 d-flex justify-content-center">
-                                <div class="portfolio-staff-card">
-
-                                    <!-- Gambar -->
-                                    <img src="{{ asset('frontend/img/volunteers-2.jpg') }}" class="portfolio-staff-img"
-                                        alt="...">
-
-                                    <!-- Overlay hitam 70% -->
-                                    <div class="portfolio-overlay"></div>
-
-                                    <!-- Konten di atas overlay -->
-                                    <div class="portfolio-content">
-
-                                        <div class="row h-100">
-
-                                            <!-- Kolom kiri -->
-                                            <div class="col-12 d-flex flex-column justify-content-between">
-                                                <div>
-                                                </div>
-
-                                                <div class="portfolio-staff rounded-btn justify-content-center ">
-                                                    <h4 class="text-white text-center fw-bold">Dr.Mariabel Isabela.ST.MT
-                                                    </h4>
-                                                    <small class="text-center">Urban Design, Greenship Associate</small>
-
-                                                </div>
-
-                                            </div>
-
-                                            <!-- Kolom kanan -->
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
 

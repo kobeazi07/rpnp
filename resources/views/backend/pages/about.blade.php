@@ -26,7 +26,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -66,7 +66,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <div class="card-body">
@@ -90,9 +90,9 @@
                                 <tr>
                                     <td>1</td>
                                     <td>{{ $about->judul }}</td>
-                                    <td>{{ strip_tags($about->deskripsi) }}</td>
-                                    <td>{{ strip_tags($about->visi) }}</td>
-                                    <td>{{ strip_tags($about->misi) }}</td>
+                                    <td>{!! str_replace('&nbsp;', ' ', $about->deskripsi) !!}</td>
+                                    <td>{!! str_replace('&nbsp;', ' ', $about->visi) !!}</td>
+                                    <td>{!! str_replace('&nbsp;', ' ', $about->misi) !!}</td>
                                     <td>
 
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -127,15 +127,15 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">Deskripsi</label>
-                                                                <textarea class="form-control" id="deskripsi2-{{ $about->id }}" name="deskripsi" placeholder="masukkan about">{{ strip_tags($about->deskripsi) }}</textarea>
+                                                                <textarea class="form-control" id="deskripsi2-{{ $about->id }}" name="deskripsi" placeholder="masukkan about">{!! str_replace('&nbsp;', ' ', $about->deskripsi) !!}</textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">Visi</label>
-                                                                <textarea class="form-control" id="visi-{{ $about->id }}" name="visi" placeholder="masukkan visi">{{ strip_tags($about->visi) }}</textarea>
+                                                                <textarea class="form-control" id="visi-{{ $about->id }}" name="visi" placeholder="masukkan visi">{!! str_replace('&nbsp;', ' ', $about->visi) !!}</textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">Misi</label>
-                                                                <textarea class="form-control" id="misi-{{ $about->id }}" name="misi" placeholder="masukkan misi">{{ strip_tags($about->misi) }}</textarea>
+                                                                <textarea class="form-control" id="misi-{{ $about->id }}" name="misi" placeholder="masukkan misi">{!! str_replace('&nbsp;', ' ', $about->misi) !!}</textarea>
                                                             </div>
 
 
@@ -172,64 +172,6 @@
 
 
     <script>
-        $('#btnSaveProgram').on('click', function() {
-            let form = document.getElementById('formabout');
-            let formData = new FormData(form);
-            if (CKEDITOR.instances.deskripsi) {
-                formData.set('deskripsi', CKEDITOR.instances.deskripsi.getData());
-            }
-
-            $.ajax({
-                url: "{{ route('Tambah_About') }}",
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-
-                beforeSend: function() {
-                    $('#btnSaveProgram')
-                        .prop('disabled', true)
-                        .text('Menyimpan...');
-                },
-
-                success: function(res) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil',
-                        text: 'Program berhasil ditambahkan',
-                        timer: 2000,
-                        showConfirmButton: false
-                    }).then(() => {
-                        location.reload();
-                    });
-                },
-
-                error: function(xhr) {
-                    let pesan = 'Terjadi kesalahan';
-
-                    if (xhr.status === 422) {
-                        let errors = xhr.responseJSON.errors;
-                        pesan = '';
-                        for (let key in errors) {
-                            pesan += `• ${errors[key][0]}<br>`;
-                        }
-                    }
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal',
-                        html: pesan
-                    });
-                },
-
-                complete: function() {
-                    $('#btnSaveProgram')
-                        .prop('disabled', false)
-                        .text('Simpan Program');
-                }
-            });
-        });
-
         // Update label filename
         document.addEventListener('change', function(e) {
             if (e.target.classList.contains('custom-file-input')) {
@@ -242,6 +184,12 @@
         // Optional: destroy editor saat modal ditutup
         document.addEventListener("DOMContentLoaded", function() {
             CKEDITOR.replace('deskripsi');
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            CKEDITOR.replace('visi');
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            CKEDITOR.replace('misi');
         });
         document.addEventListener("DOMContentLoaded", function() {
 
@@ -259,10 +207,26 @@
             let form = $(this);
             let id = form.data('id');
             let formData = new FormData(this);
-
             let editorId = 'deskripsi2-' + id;
+            let editorVisi = 'visi' + id;
+            let editorMisi = 'misi' + id;
             if (CKEDITOR.instances[editorId]) {
                 formData.set('deskripsi', CKEDITOR.instances[editorId].getData());
+            }
+            // Visi
+            if (CKEDITOR.instances[editorVisi]) {
+                formData.set(
+                    'visi',
+                    CKEDITOR.instances[editorVisi].getData()
+                );
+            }
+
+            // Misi
+            if (CKEDITOR.instances[editorMisi]) {
+                formData.set(
+                    'misi',
+                    CKEDITOR.instances[editorMisi].getData()
+                );
             }
 
             $.ajax({

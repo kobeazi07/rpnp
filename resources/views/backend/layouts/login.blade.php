@@ -13,7 +13,7 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>Admin Bang Uco</title>
+    <title>Admin RPNP</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block ">
-                                <img src="{{ asset('backend/img/login.webp') }}" class="w-100" alt="Logo Bang UCO"
+                                <img src="{{ asset('backend/img/rpnp.png') }}" class="w-100" alt="Logo Bang UCO"
                                     style="max-width: 100%; height: 100%; object-fit:cover; display: block; margin: 0 auto;">
                             </div>
                             <div class="col-lg-6">
