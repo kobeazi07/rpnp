@@ -36,6 +36,7 @@ class HomeController extends Controller
         $testimoni = Testimoni::get();
         $partner = Partner::get();
         $Galeri = Galeri::get();
+        $services = Services::get();
         $nowa = preg_replace('/[^0-9]/', '', $setting->no_wa);
         $pesanWa = urlencode($setting->text_wa);
         if (str_starts_with($nowa, '0')) {
@@ -47,7 +48,7 @@ class HomeController extends Controller
             ->orderByDesc('id')
             ->get()
             ->groupBy('tahun');
-        return view('frontend.pages.home', compact('partner', 'Galeri', 'testimoni', 'klasifikasi', 'setting', 'nowa', 'about', 'pesanWa', 'portfolioByYear'));
+        return view('frontend.pages.home', compact('partner', 'Galeri', 'testimoni', 'klasifikasi', 'setting', 'nowa', 'about', 'pesanWa', 'portfolioByYear', 'services'));
     }
     public function about()
     {

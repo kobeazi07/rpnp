@@ -158,56 +158,20 @@
                 <h1 class="mb-0 putih1 fw-bold">Smarter by Design, Sustainable by Purpose, Compliant by Standard</h1>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-item rounded-image">
-                        <img src="{{ asset('frontend/img/wwd-1.webp') }}" class="img-fluid w-100 wwd-img "
-                            alt="Image">
-                        <div class="service-link">
-                            <a href="#" class="h4 mb-0 fw-bold">Greenship & Edge</a>
+
+                @foreach ($services as $services)
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="service-item rounded-image">
+                            <img src="{{ asset($services->image) }}" class="img-fluid w-100 wwd-img" alt="Image">
+                            <div class="service-link">
+                                <a href="#" class="h4 mb-0 fw-bold">{{ $services->nama }}</a>
+                            </div>
                         </div>
+                        <p class="my-4 text-white">{{ $services->deskripsi }}
+                        </p>
                     </div>
-                    <p class="my-4 text-white">Kami membantu Anda dalam proses sertifikasi bangunan hijau melalui skema
-                        Greenship dan EDGE, Sistem sertifikasi bangunan hijau adalah serangkaian sistem dan alat
-                        pemeringkatan yang digunakan untuk menilai kinerja bangunan atau proyek konstruksi dari perspektif
-                        keberlanjutan dan lingkungan.
-                    </p>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-item rounded-image">
-                        <img src="{{ asset('frontend/img/wwd-2.webp') }}" class="img-fluid w-100 wwd-img" alt="Image">
-                        <div class="service-link">
-                            <a href="#" class="h4 mb-0 fw-bold"> Sustainable Energy
-                                Resource</a>
-                        </div>
-                    </div>
-                    <p class="my-4 text-white">Mengembangkan rencana energi yang komprehensif, termasuk pemilihan teknologi
-                        energi terbarukan yang sesuai
-                    </p>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-item rounded-image">
-                        <img src="{{ asset('frontend/img/wwd-3.webp') }}" class="img-fluid w-100 wwd-img" alt="Image">
-                        <div class="service-link">
-                            <a href="#" class="h4 mb-0 fw-bold">BIM (Building
-                                Information Modeling)</a>
-                        </div>
-                    </div>
-                    <p class="my-4 text-white">Sistem terintegrasi yang berfungsi untuk mengelola digitalisasi bangunan dan
-                        infrastruktur, mensimulasikan seluruh informasi pada sebuah proyek pembangunan ke dalam model 3
-                        dimensi.
-                    </p>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-item rounded-image">
-                        <img src="{{ asset('frontend/img/wwd-4.webp') }}" class="img-fluid w-100 wwd-img" alt="Image">
-                        <div class="service-link">
-                            <a href="#" class="h4 mb-0 fw-bold">PBG dan SLF</a>
-                        </div>
-                    </div>
-                    <p class="my-4 text-white">kami adalah konsultan perizinan yang dapat membantu Anda mengatasi semua
-                        tantangan terkait dengan perizinan bangunan dan lingkungan
-                    </p>
-                </div>
+                @endforeach
+
 
             </div>
         </div>
