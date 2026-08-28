@@ -281,5 +281,10 @@
                 }
             });
         });
+
+
+        // $(document).ready(function() {
+        //     $('#dataTable').DataTable();
+        // });
     </script>
 @endsection
