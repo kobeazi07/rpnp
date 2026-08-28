@@ -97,6 +97,10 @@ class MasterController extends Controller
             'link_tiktok' => $request->link_tiktok,
             'link_linkedin' => $request->link_linkedin,
             'text_wa' => $request->text_wa,
+            // Otomatis tambahkan class rounded-image
+            'embed_gmaps'    => $this->addClassToIframe($request->embed_gmaps),
+            'link_gmaps' => $request->link_gmaps,
+            'alamat' => $request->alamat,
         ];
 
         // cek jika ada thumbnail baru
@@ -118,6 +122,31 @@ class MasterController extends Controller
         ]);
     }
 
+    private function addClassToIframe($html)
+    {
+        if (empty($html)) {
+            return $html;
+        }
+
+        // Jika iframe sudah memiliki class
+        if (preg_match('/<iframe\b[^>]*class=["\']([^"\']*)["\']/i', $html)) {
+
+            return preg_replace(
+                '/(<iframe\b[^>]*class=["\'])([^"\']*)(["\'])/i',
+                '$1$2 rounded-image$3',
+                $html,
+                1
+            );
+        }
+
+        // Jika iframe belum memiliki class
+        return preg_replace(
+            '/<iframe\b/i',
+            '<iframe class="rounded-image"',
+            $html,
+            1
+        );
+    }
     // about
     // about
     public function about()

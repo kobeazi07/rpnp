@@ -22,6 +22,9 @@ return new class extends Migration
             $table->text('link_facebook');
             $table->text('link_tiktok');
             $table->text('text_wa')->nullable();
+            $table->text('embed_gmaps')->nullable();
+            $table->text('link_gmaps')->nullable();
+            $table->text('alamat')->nullable();
             $table->timestamps();
         });
     }

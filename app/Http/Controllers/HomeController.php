@@ -54,10 +54,12 @@ class HomeController extends Controller
         $about = About::first();
         $staff = Staff::get();
         $staffs = Staff::get();
+        $setting = Setting::first();
         return view('frontend.pages.about', compact(
             'about',
             'staff',
-            'staffs'
+            'staffs',
+            'setting'
         ));
     }
     public function blog()

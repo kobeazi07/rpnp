@@ -314,7 +314,9 @@
 
                                                                 <div class="portfolio-title rounded-btn ">
                                                                     <small>{{ $portfolio->rkategori_portfolio->nama }}</small>
-                                                                    <h4 class="text-white fw-bold">{{ $portfolio->judul }}
+
+                                                                    <h4 class="text-white fw-bold blog-description-2-line">
+                                                                        {{ $portfolio->judul }}
                                                                     </h4>
                                                                 </div>
 

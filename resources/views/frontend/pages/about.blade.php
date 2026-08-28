@@ -219,18 +219,16 @@
         <div class="container  rounded-image bg-hijau-1 mt-5">
             <div class="row p-3 ">
                 <div class="col-lg-6 mb-3 mt-3 rounded-image">
-                    <iframe class="rounded-image"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8176290864735!2d109.28335527619711!3d-0.03372723554226409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d5900352a8487%3A0xcc25715cdad765ce!2sRPNP%20%26%20URBELCO%20STUDIO!5e0!3m2!1sid!2sid!4v1787533456052!5m2!1sid!2sid"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    {!! $setting->embed_gmaps !!}
+
                 </div>
                 <div class="col-lg-6 mb-3 mt-3 d-flex flex-column justify-content-center">
                     <h1 class="fw-bold text-white  ">Let’s Find Us on</h1>
-                    <h3 class=" text-white   ">No.38 B, Komplek Harmoni Indah, Jl. Husein Hamzah, Pal Lima,
-                        Pontianak Barat, Pontianak, West Kalimantan 78114</h3>
+                    <h3 class=" text-white   ">{{ $setting->alamat }}</h3>
 
                     <div class="row d-flex justify-content-right">
-                        <a class="btn-hover-border rounded-btn mt-3 btn bg-putih1 hijau-1 py-2 px-4" href="#">
+                        <a class="btn-hover-border rounded-btn mt-3 btn bg-putih1 hijau-1 py-2 px-4"
+                            href="{{ $setting->link_gmaps }}">
                             <i class="fas fa-map-marker-alt hijau-1 me-2"></i>Open Maps</a>
                     </div>
                 </div>

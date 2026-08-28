@@ -40,9 +40,21 @@
                                 id="exampleFormControlInput1" placeholder="masukkan portfolio">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No Wa</label>
+                            <label for="exampleFormControlInput1">Email</label>
                             <input type="text" value="{{ $cv->email }}" class="form-control" name="email"
                                 id="exampleFormControlInput1" placeholder="masukkan portfolio">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Embed Gmaps</label>
+                            <textarea class="form-control" id="embed_gmaps" name="embed_gmaps" placeholder="masukkan embed gmaps">{{ $cv->embed_gmaps }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Link Gmaps</label>
+                            <textarea class="form-control" id="link_gmaps" name="link_gmaps" placeholder="masukkan link gmaps">{{ $cv->link_gmaps }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Alamat</label>
+                            <textarea class="form-control" id="alamat" name="alamat" placeholder="masukkan alamat">{{ $cv->alamat }}</textarea>
                         </div>
 
                     </div>
@@ -67,6 +79,7 @@
                             <label for="exampleFormControlInput1">Text WA</label>
                             <textarea class="form-control" id="text_wa" name="text_wa" placeholder="masukkan portfolio">{{ $cv->text_wa }}</textarea>
                         </div>
+
                     </div>
                 </div>
 

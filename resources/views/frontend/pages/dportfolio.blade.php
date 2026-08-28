@@ -19,8 +19,8 @@
             <h1 class="fw-bold hijau-1 ">{{ $portfolio->judul }}</h1>
         </div>
         <div class="row d-flex mt-5 mb-3 justify-content-center">
-            <img src="{{ asset('frontend/img/about.png') }}" class="thumbnail rounded-image img-fluid w-100 h-35"
-                alt="Image" style="object-fit: cover; ">
+            <img src="{{ asset($portfolio->foto) }}" class="thumbnail rounded-image img-fluid w-100 h-35" alt="Image"
+                style="object-fit: cover; ">
         </div>
         <div class="row">
             <h5 class="fw-bold abu">Building Type: <span> {{ $portfolio->rbuilding_type->nama }} </span></h5>
