@@ -25,7 +25,8 @@
                                 Information Modeling), PBG, and SLF consulting services.
                             </p>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn rounded-btn bg-hijau-1 text-white py-3 px-5" href="#">Join
+                                <a class="btn-hover-bg btn rounded-btn bg-hijau-1 text-white py-3 px-5"
+                                    href="https://api.whatsapp.com/send?phone={{ preg_replace('/^0/', '62', $setting->no_wa) }}&text={{ $setting->text_wa }}">Join
                                     With
                                     Us</a>
                             </div>
