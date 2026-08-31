@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -28,6 +29,7 @@ use App\Models\Portfolio;
 use App\Models\Tag;
 use App\Models\Setting;
 use App\Models\About;
+use App\Models\User;
 use App\Models\Kategori_Portfolio;
 
 class MasterController extends Controller
@@ -81,6 +83,34 @@ class MasterController extends Controller
         $setting = Setting::limit(1)->get();
         $settingss = Setting::limit(1)->get();
         return view('backend.pages.dashboard', compact('setting', 'settingss'));
+    }
+
+    public function profiladmin()
+    {
+        $users = Auth::user();
+
+        return view('backend.pages.profil', compact('users'));
+    }
+    public function edit_profiladmin(Request $request, $id)
+    {
+
+        $user = User::findOrFail(Auth::id());
+
+        $data = [
+            'name'  => $request->name,
+            'email' => $request->email,
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'Profil admin berhasil diupdate'
+        ]);
     }
 
     public function edit_setting(Request $request, $id)
@@ -1136,6 +1166,16 @@ class MasterController extends Controller
 
                 $thumbnailPath = 'inputan/career/' . $thumbnailName;
             }
+            $slug = Str::slug($request->judul);
+
+            $originalSlug = $slug;
+            $count = 1;
+
+            while (Career::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count;
+                $count++;
+            }
+
 
             $career = Career::create([
                 'judul' => $request->judul,
@@ -1144,6 +1184,7 @@ class MasterController extends Controller
                 'location' => $request->location,
                 'kategori_career' => $request->kategori_career,
                 'requirement' => $request->requirement,
+                'slug' => $slug,
                 'link_daftar' => $request->link_daftar,
             ]);
 
@@ -1165,6 +1206,18 @@ class MasterController extends Controller
     {
 
         $partner = Career::find($id);
+        $slug = Str::slug($request->judul);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (
+            Career::where('slug', $slug)
+            ->where('id', '!=', $id)
+            ->exists()
+        ) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
         $data = [
             'judul' => $request->judul,
             'deadline' => $request->deadline,
@@ -1172,6 +1225,7 @@ class MasterController extends Controller
             'kategori_career' => $request->kategori_career,
             'requirement' => $request->requirement,
             'link_daftar' => $request->link_daftar,
+            'slug' => $slug,
         ];
 
         if ($request->hasFile('foto')) {
@@ -1259,6 +1313,16 @@ class MasterController extends Controller
 
                 $thumbnailPath = 'inputan/portfolio/' . $thumbnailName;
             }
+            $slug = Str::slug($request->judul);
+
+            $originalSlug = $slug;
+            $count = 1;
+
+            while (Portfolio::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count;
+                $count++;
+            }
+
 
             $portfolio = Portfolio::create([
                 'judul' => $request->judul,
@@ -1268,6 +1332,7 @@ class MasterController extends Controller
                 'sow' => $request->sow,
                 'deskripsi' => $request->deskripsi,
                 'tahun' => $request->tahun,
+                'slug' => $slug,
 
             ]);
             $portfolio_id = $portfolio->id;
@@ -1304,6 +1369,20 @@ class MasterController extends Controller
     {
 
         $partner = Portfolio::find($id);
+        $slug = Str::slug($request->judul);
+
+        // Cek apakah slug sudah digunakan artikel lain
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (
+            Portfolio::where('slug', $slug)
+            ->where('id', '!=', $id)
+            ->exists()
+        ) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
         $data = [
             'judul' => $request->judul,
             'buildingtype_id' => $request->buildingtype_id,
@@ -1311,6 +1390,7 @@ class MasterController extends Controller
             'sow' => $request->sow,
             'deskripsi' => $request->deskripsi,
             'tahun' => $request->tahun,
+            'slug' => $slug
         ];
 
         if ($request->hasFile('foto')) {
@@ -1445,13 +1525,23 @@ class MasterController extends Controller
 
                 $thumbnailPath = 'inputan/blog/' . $thumbnailName;
             }
+            $slug = Str::slug($request->judul);
+
+            $originalSlug = $slug;
+            $count = 1;
+
+            while (Blog::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count;
+                $count++;
+            }
+
 
             $blog = Blog::create([
                 'judul' => $request->judul,
                 'foto' =>  $thumbnailPath,
                 'kategori_id' => $request->kategori_id,
                 'deskripsi' => $request->deskripsi,
-
+                'slug' => $slug,
             ]);
             $blog_id = $blog->id;
             // dd($blog_id);
@@ -1533,10 +1623,25 @@ class MasterController extends Controller
     {
 
         $partner = Blog::find($id);
+        $slug = Str::slug($request->judul);
+
+        // Cek apakah slug sudah digunakan artikel lain
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (
+            Blog::where('slug', $slug)
+            ->where('id', '!=', $id)
+            ->exists()
+        ) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
+
         $data = [
             'judul' => $request->judul,
             'kategori_id' => $request->kategori_id,
-
+            'slug' => $slug,
             'deskripsi' => $request->deskripsi,
 
         ];

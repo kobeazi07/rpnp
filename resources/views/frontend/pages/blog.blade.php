@@ -83,8 +83,9 @@
                                             </div>
                                             <div class="d-flex align-items-center mt-4 justify-content-start">
                                                 <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                    href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
-                                                    More</a>
+                                                    href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
+                                                    Read More
+                                                </a>
                                             </div>
 
                                         </div>
@@ -115,8 +116,9 @@
                                             </div>
                                             <div class="d-flex align-items-center mt-4 justify-content-start">
                                                 <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                    href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
-                                                    More</a>
+                                                    href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
+                                                    Read More
+                                                </a>
                                             </div>
 
                                         </div>
@@ -147,8 +149,9 @@
                                                 </div>
                                                 <div class="d-flex align-items-center mt-4 justify-content-start">
                                                     <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
-                                                        More</a>
+                                                        href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
+                                                        Read More
+                                                    </a>
                                                 </div>
 
                                             </div>
@@ -180,8 +183,9 @@
                                                 </div>
                                                 <div class="d-flex align-items-center mt-4 justify-content-start">
                                                     <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
-                                                        More</a>
+                                                        href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
+                                                        Read More
+                                                    </a>
                                                 </div>
 
                                             </div>
@@ -213,8 +217,9 @@
                                                 </div>
                                                 <div class="d-flex align-items-center mt-4 justify-content-start">
                                                     <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
-                                                        More</a>
+                                                        href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
+                                                        Read More
+                                                    </a>
                                                 </div>
 
                                             </div>
@@ -246,8 +251,9 @@
                                                 </div>
                                                 <div class="d-flex align-items-center mt-4 justify-content-start">
                                                     <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDBlog', ['id' => $blog->id]) }}">Read
-                                                        More</a>
+                                                        href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
+                                                        Read More
+                                                    </a>
                                                 </div>
 
                                             </div>

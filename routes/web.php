@@ -7,10 +7,10 @@ use App\Http\Controllers\MasterController;
 Route::get('/', [HomeController::class, 'home'])->name('HalamanHome');
 Route::get('/about', [HomeController::class, 'about'])->name('HalamanAbout');
 Route::get('/blog', [HomeController::class, 'blog'])->name('HalamanBlog');
-Route::get('/dblog/{id}', [HomeController::class, 'dblog'])->name('HalamanDBlog');
+Route::get('/dblog/{blog:slug}', [HomeController::class, 'dblog'])->name('HalamanDBlog');
 Route::get('/carerr', [HomeController::class, 'carerr'])->name('HalamanCarerr');
-Route::get('/dcarerr/{id}', [HomeController::class, 'dcarerr'])->name('HalamanDCarerr');
-Route::get('/dportfolio/{id}', [HomeController::class, 'dportfolio'])->name('HalamanDPortfolio');
+Route::get('/dcarerr/{career:slug}', [HomeController::class, 'dcarerr'])->name('HalamanDCarerr');
+Route::get('/dportfolio/{portfolio:slug}', [HomeController::class, 'dportfolio'])->name('HalamanDPortfolio');
 
 Route::get('/admin', [MasterController::class, 'halamanlogin'])->name('HalamanLogin');
 Route::post('/login', [MasterController::class, 'login'])->name('login');
@@ -19,6 +19,8 @@ Route::post('/logout', [MasterController::class, 'user_logout'])->name('Logout')
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/dashboard', [MasterController::class, 'dashboard'])->name('HalamanDashboard');
     Route::post('/edit_setting/{id}', [MasterController::class, 'edit_setting'])->name('Edit_setting');
+    Route::get('/profiladmin', [MasterController::class, 'profiladmin'])->name('HalamanPorfiladmin');
+    Route::post('/edit_profiladmin/{id}', [MasterController::class, 'edit_profiladmin'])->name('Edit_profiladmin');
     Route::get('/admin_about', [MasterController::class, 'about'])->name('HalamanAdminAbout');
     // Route::post('/tambah_about', [AdminController::class, 'tambah_about'])->name('Tambah_About');
     Route::post('/edit_about/{id}', [MasterController::class, 'edit_about'])->name('Edit_About');

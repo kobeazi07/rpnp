@@ -447,8 +447,12 @@
         $('#btnSavecareer').on('click', function() {
             let form = document.getElementById('formcareer');
             let formData = new FormData(form);
-            if (CKEDITOR.instances[editorId]) {
-                formData.set('requirement', CKEDITOR.instances[editorId].getData());
+            // Ambil data dari CKEditor
+            if (CKEDITOR.instances['requirement']) {
+                formData.set(
+                    'requirement',
+                    CKEDITOR.instances['requirement'].getData()
+                );
             }
 
             $.ajax({

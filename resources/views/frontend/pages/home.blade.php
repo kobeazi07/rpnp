@@ -252,7 +252,7 @@
                                         @foreach ($portfolios as $portfolio)
                                             {{-- Card portfolio --}}
 
-                                            <div class="col-md-4 mb-3 me-3">
+                                            <div class="col-md-4 mb-3 me-5">
                                                 <div class="portfolio-card">
 
                                                     <!-- Gambar -->
@@ -295,7 +295,7 @@
                                                                     {{ $loop->iteration }}
                                                                 </span>
 
-                                                                <a href="{{ route('HalamanDPortfolio', ['id' => $portfolio->id]) }}"
+                                                                <a href="{{ route('HalamanDPortfolio', ['portfolio' => $portfolio->slug]) }}"
                                                                     class="portfolio-btn">
                                                                     <i class="fas fa-eye"></i>
                                                                 </a>

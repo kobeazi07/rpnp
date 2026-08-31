@@ -24,6 +24,7 @@ return new class extends Migration
                 ->restrictOnDelete();
 
             $table->text('sow')->nullable();
+            $table->text('slug')->nullable();
             $table->text('foto')->nullable();
             $table->text('deskripsi')->nullable();
             $table->integer('tahun')->nullable();

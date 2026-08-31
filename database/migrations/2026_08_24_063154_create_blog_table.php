@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('deskripsi')->nullable();
+            $table->text('slug')->nullable();
             $table->text('foto')->nullable();
             $table->foreignId('kategori_id')
                 ->constrained('kategori_blog')

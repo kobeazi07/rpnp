@@ -25,6 +25,7 @@ return new class extends Migration
             $table->longText('requirement')->nullable();
             $table->string('link_daftar')->nullable();
             $table->text('foto')->nullable();
+            $table->text('slug')->nullable();
             $table->timestamps();
         });
     }

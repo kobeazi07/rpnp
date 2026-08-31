@@ -80,10 +80,11 @@ class HomeController extends Controller
             'rblogssss'
         ));
     }
-    public function dblog($id)
+    public function dblog($slug)
     {
-        $blog = Blog::find($id);
-        $g_blog = G_Blog::where('blog_id', $id)->get();
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+
+        $g_blog = G_Blog::where('blog_id', $blog->id)->get();
 
         return view('frontend.pages.dblog', compact('blog', 'g_blog'));
     }
@@ -102,15 +103,17 @@ class HomeController extends Controller
             'careerssss'
         ));
     }
-    public function dcarerr($id)
+    public function dcarerr($slug)
     {
-        $career = Career::find($id);
+        $career = Career::where('slug', $slug)->firstOrFail();
+        // $career = Career::find($id);
         return view('frontend.pages.dcarerr', compact('career'));
     }
-    public function dportfolio($id)
+    public function dportfolio($slug)
     {
-        $portfolio = Portfolio::find($id);
-        $g_portfolio = G_Portfolio::where('portfolio_id', $id)->get();
+        $portfolio = Portfolio::where('slug', $slug)->firstOrFail();
+        // $portfolio = Portfolio::find($id);
+        $g_portfolio = G_Portfolio::where('portfolio_id', $portfolio->id)->get();
         return view('frontend.pages.dportfolio', compact('portfolio', 'g_portfolio'));
     }
 }
