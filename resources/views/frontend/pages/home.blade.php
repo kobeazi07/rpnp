@@ -704,42 +704,44 @@
     <!-- Causes Start -->
     <!-- Causes End -->
     <!-- Events Start -->
-    <div class="container-fluid event py-5">
-        <div class="container py-5">
+    @if ($testimoni->isNotEmpty())
+        <div class="container-fluid event py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto mb-5" style="max-width: 800px;">
+                    <h5 class="text-uppercase text-primary hijau-1">
+                        TESTIMONIAL
+                    </h5>
 
-            <div class="text-center mx-auto mb-5" style="max-width: 800px;">
-                <h5 class="text-uppercase text-primary hijau-1">TESTIMONIAL</h5>
-                <h1 class="mb-0">What They’re Talking About Our Work</h1>
-            </div>
+                    <h1 class="mb-0">
+                        What They’re Talking About Our Work
+                    </h1>
+                </div>
 
-            <div class="event-carousel owl-carousel mt-5">
+                <div class="event-carousel owl-carousel mt-5">
+                    @foreach ($testimoni as $item)
+                        <div class="event-item">
+                            <img src="{{ $item->foto }}" class="img-fluid w-100 rounded-atas"
+                                alt="{{ $item->nama }}">
 
-                @foreach ($testimoni as $item)
-                    <div class="event-item">
+                            <div class="event-content p-4 rounded-nav">
+                                <h4 class="fw-bold">
+                                    {{ $item->nama }}
+                                </h4>
 
-                        <img src="{{ $item->foto }}" class="img-fluid w-100 rounded-atas" alt="{{ $item->nama }}">
+                                <h6 class="mb-4 hijau-1">
+                                    {{ $item->jabatan }}
+                                </h6>
 
-                        <div class="event-content p-4 rounded-nav">
-
-                            <h4 class="fw-bold">
-                                {{ $item->nama }}
-                            </h4>
-
-                            <h6 class="mb-4 hijau-1">
-                                {{ $item->jabatan }}
-                            </h6>
-
-                            <div class="testimonial-description">
-                                {{ $item->deskripsi }}
+                                <div class="testimonial-description">
+                                    {{ $item->deskripsi }}
+                                </div>
                             </div>
-
                         </div>
-                    </div>
-                @endforeach
-
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
+    @endif
     <!-- Events End -->
     {{-- klasifikasi --}}
     <div class="container-fluid  py-5 ">

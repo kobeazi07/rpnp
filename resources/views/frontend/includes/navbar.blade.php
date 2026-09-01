@@ -30,7 +30,7 @@
               </div>
           </div>
           <nav class="navbar navbar-light bg-light navbar-expand-xl rounded-nav">
-              <a href="index.html" class="navbar-brand ms-5 mb-2 mt-2 w-25">
+              <a href="{{ route('HalamanHome') }}" class="navbar-brand ms-5 mb-2 mt-2 w-25">
                   <img src="{{ asset('frontend/img/logorpnp.png') }}" class="w-25" alt="">
                   {{-- <h1 class="text-primary display-5">Environs</h1> --}}
               </a>

@@ -253,7 +253,7 @@
                                                                 <label
                                                                     for="deskripsi-{{ $blog->id }}">Deskripsi</label>
 
-                                                                <textarea class="form-control editor" id="deskripsi-{{ $blog->id }}" name="deskripsi"
+                                                                <textarea class="form-control editor" id="deskripsi2-{{ $blog->id }}" name="deskripsi"
                                                                     placeholder="Masukkan blog">{{ $blog->deskripsi }}</textarea>
                                                             </div>
                                                             <div class="input-group mb-3">

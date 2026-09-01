@@ -11,6 +11,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Format;
 use App\Models\Partner;
 use App\Models\Services;
 use App\Models\Testimoni;
@@ -31,6 +34,7 @@ use App\Models\Setting;
 use App\Models\About;
 use App\Models\User;
 use App\Models\Kategori_Portfolio;
+
 
 class MasterController extends Controller
 {
@@ -632,22 +636,53 @@ class MasterController extends Controller
         try {
             $thumbnailPath = null;
             if ($request->hasFile('image')) {
+
                 $thumbnail = $request->file('image');
-
-                $originalName = $thumbnail->getClientOriginalName();
-
-                // Ganti spasi dengan tanda -
-                $originalName = str_replace(' ', '-', $originalName);
-
-                $thumbnailName = uniqid() . 'image_' . $originalName;
-
-                $thumbnail->move(
-                    public_path('inputan/galeri/'),
-                    $thumbnailName
+                $originalName = pathinfo(
+                    $thumbnail->getClientOriginalName(),
+                    PATHINFO_FILENAME
                 );
+                $originalName = str_replace(' ', '-', $originalName);
+                $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+                $destination = public_path('inputan/galeri/');
+                if (!file_exists($destination)) {
+                    mkdir($destination, 0755, true);
+                }
 
+                $manager = ImageManager::usingDriver(Driver::class);
+
+                $image = $manager->decode(
+                    $thumbnail->getPathname()
+                );
+                // Resize maksimal 1920px
+                $image->scaleDown(width: 1920);
+                // Convert ke WebP quality 80
+                $encoded = $image->encodeUsingFormat(
+                    Format::WEBP,
+                    quality: 80
+                );
+                $encoded->save(
+                    $destination . $thumbnailName
+                );
                 $thumbnailPath = 'inputan/galeri/' . $thumbnailName;
             }
+            // if ($request->hasFile('image')) {
+            //     $thumbnail = $request->file('image');
+
+            //     $originalName = $thumbnail->getClientOriginalName();
+
+            //     // Ganti spasi dengan tanda -
+            //     $originalName = str_replace(' ', '-', $originalName);
+
+            //     $thumbnailName = uniqid() . 'image_' . $originalName;
+
+            //     $thumbnail->move(
+            //         public_path('inputan/galeri/'),
+            //         $thumbnailName
+            //     );
+
+            //     $thumbnailPath = 'inputan/galeri/' . $thumbnailName;
+            // }
 
             $galeri = Galeri::create([
                 'judul' => $request->judul,
@@ -677,20 +712,51 @@ class MasterController extends Controller
             'judul' => $request->judul,
 
         ];
-
         if ($request->hasFile('image')) {
 
             $thumbnail = $request->file('image');
-            $originalName = $thumbnail->getClientOriginalName();
-            $originalName = str_replace(' ', '-', $originalName);
-            $thumbnailName = uniqid() . '_image_' . $originalName;
-            $thumbnail->move(
-                public_path('inputan/galeri/'),
-                $thumbnailName
+
+            // Nama file tanpa extension
+            $originalName = pathinfo(
+                $thumbnail->getClientOriginalName(),
+                PATHINFO_FILENAME
             );
-            // Simpan path ke database
+            $originalName = str_replace(' ', '-', $originalName);
+            $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+            $destination = public_path('inputan/galeri/');
+            if (!file_exists($destination)) {
+                mkdir($destination, 0755, true);
+            }
+            // Gunakan GD
+            $manager = ImageManager::usingDriver(Driver::class);
+            // Baca file upload
+            $image = $manager->decode($thumbnail);
+            // Resize maksimal 1920px, rasio tetap
+            $image->scaleDown(width: 1920);
+            // Convert ke WebP + compression
+            $encoded = $image->encodeUsingFormat(
+                Format::WEBP,
+                quality: 80
+            );
+            $encoded->save(
+                $destination . $thumbnailName
+            );
+
             $data['image'] = 'inputan/galeri/' . $thumbnailName;
         }
+        // if ($request->hasFile('image')) {
+
+        //     $thumbnail = $request->file('image');
+        //     $originalName = $thumbnail->getClientOriginalName();
+        //     $originalName = str_replace(' ', '-', $originalName);
+        //     $thumbnailName = uniqid() . '_image_' . $originalName;
+        //     $thumbnail->move(
+        //         public_path('inputan/galeri/'),
+        //         $thumbnailName
+        //     );
+        //     // Simpan path ke database
+        //     $data['image'] = 'inputan/galeri/' . $thumbnailName;
+        // }
 
         Galeri::where('id', $id)->update($data);
         return response()->json([
@@ -1150,20 +1216,34 @@ class MasterController extends Controller
         try {
             $thumbnailPath = null;
             if ($request->hasFile('foto')) {
+
                 $thumbnail = $request->file('foto');
-
-                $originalName = $thumbnail->getClientOriginalName();
-
-                // Ganti spasi dengan tanda -
-                $originalName = str_replace(' ', '-', $originalName);
-
-                $thumbnailName = uniqid() . '_foto_' . $originalName;
-
-                $thumbnail->move(
-                    public_path('inputan/career/'),
-                    $thumbnailName
+                $originalName = pathinfo(
+                    $thumbnail->getClientOriginalName(),
+                    PATHINFO_FILENAME
                 );
+                $originalName = str_replace(' ', '-', $originalName);
+                $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+                $destination = public_path('inputan/career/');
+                if (!file_exists($destination)) {
+                    mkdir($destination, 0755, true);
+                }
 
+                $manager = ImageManager::usingDriver(Driver::class);
+
+                $image = $manager->decode(
+                    $thumbnail->getPathname()
+                );
+                // Resize maksimal 1920px
+                $image->scaleDown(width: 1920);
+                // Convert ke WebP quality 80
+                $encoded = $image->encodeUsingFormat(
+                    Format::WEBP,
+                    quality: 80
+                );
+                $encoded->save(
+                    $destination . $thumbnailName
+                );
                 $thumbnailPath = 'inputan/career/' . $thumbnailName;
             }
             $slug = Str::slug($request->judul);
@@ -1227,21 +1307,38 @@ class MasterController extends Controller
             'link_daftar' => $request->link_daftar,
             'slug' => $slug,
         ];
-
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
-            $originalName = $thumbnail->getClientOriginalName();
-            $originalName = str_replace(' ', '-', $originalName);
-            $thumbnailName = uniqid() . '_foto_' . $originalName;
-            $thumbnail->move(
-                public_path('inputan/career/'),
-                $thumbnailName
+
+            // Nama file tanpa extension
+            $originalName = pathinfo(
+                $thumbnail->getClientOriginalName(),
+                PATHINFO_FILENAME
             );
-            // Simpan path ke database
+            $originalName = str_replace(' ', '-', $originalName);
+            $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+            $destination = public_path('inputan/career/');
+            if (!file_exists($destination)) {
+                mkdir($destination, 0755, true);
+            }
+            // Gunakan GD
+            $manager = ImageManager::usingDriver(Driver::class);
+            // Baca file upload
+            $image = $manager->decode($thumbnail);
+            // Resize maksimal 1920px, rasio tetap
+            $image->scaleDown(width: 1920);
+            // Convert ke WebP + compression
+            $encoded = $image->encodeUsingFormat(
+                Format::WEBP,
+                quality: 80
+            );
+            $encoded->save(
+                $destination . $thumbnailName
+            );
+
             $data['foto'] = 'inputan/career/' . $thumbnailName;
         }
-
         Career::where('id', $id)->update($data);
         return response()->json([
             'status'  => 1,
@@ -1296,21 +1393,52 @@ class MasterController extends Controller
 
         try {
             $thumbnailPath = null;
+            // if ($request->hasFile('foto')) {
+            //     $thumbnail = $request->file('foto');
+
+            //     $originalName = $thumbnail->getClientOriginalName();
+
+            //     // Ganti spasi dengan tanda -
+            //     $originalName = str_replace(' ', '-', $originalName);
+
+            //     $thumbnailName = uniqid() . '_foto_' . $originalName;
+
+            //     $thumbnail->move(
+            //         public_path('inputan/portfolio/'),
+            //         $thumbnailName
+            //     );
+
+            //     $thumbnailPath = 'inputan/portfolio/' . $thumbnailName;
+            // }
             if ($request->hasFile('foto')) {
+
                 $thumbnail = $request->file('foto');
-
-                $originalName = $thumbnail->getClientOriginalName();
-
-                // Ganti spasi dengan tanda -
-                $originalName = str_replace(' ', '-', $originalName);
-
-                $thumbnailName = uniqid() . '_foto_' . $originalName;
-
-                $thumbnail->move(
-                    public_path('inputan/portfolio/'),
-                    $thumbnailName
+                $originalName = pathinfo(
+                    $thumbnail->getClientOriginalName(),
+                    PATHINFO_FILENAME
                 );
+                $originalName = str_replace(' ', '-', $originalName);
+                $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+                $destination = public_path('inputan/portfolio/');
+                if (!file_exists($destination)) {
+                    mkdir($destination, 0755, true);
+                }
 
+                $manager = ImageManager::usingDriver(Driver::class);
+
+                $image = $manager->decode(
+                    $thumbnail->getPathname()
+                );
+                // Resize maksimal 1920px
+                $image->scaleDown(width: 1920);
+                // Convert ke WebP quality 80
+                $encoded = $image->encodeUsingFormat(
+                    Format::WEBP,
+                    quality: 80
+                );
+                $encoded->save(
+                    $destination . $thumbnailName
+                );
                 $thumbnailPath = 'inputan/portfolio/' . $thumbnailName;
             }
             $slug = Str::slug($request->judul);
@@ -1337,16 +1465,57 @@ class MasterController extends Controller
             ]);
             $portfolio_id = $portfolio->id;
             // dd($portfolio_id);
-            if ($request->hasFile('files')) {
-                foreach ($request->file('files') as $file) {
-                    $fileName = uniqid() . '_' . $file->getClientOriginalName();
-                    $file->move(public_path('inputan/portfolio/detailimg'), $fileName);
+            // if ($request->hasFile('files')) {
+            //     foreach ($request->file('files') as $file) {
+            //         $fileName = uniqid() . '_' . $file->getClientOriginalName();
+            //         $file->move(public_path('inputan/portfolio/detailimg'), $fileName);
 
+            //         G_Portfolio::create([
+            //             'portfolio_id' => $portfolio_id,
+            //             'image'     => $fileName,
+            //             'created_at' => now(),
+            //             'updated_at' => now(),
+            //         ]);
+            //     }
+            // }
+            if ($request->hasFile('files')) {
+
+                // Gunakan Image Manager
+                $manager = ImageManager::usingDriver(Driver::class);
+
+                foreach ($request->file('files') as $file) {
+                    $originalName = pathinfo(
+                        $file->getClientOriginalName(),
+                        PATHINFO_FILENAME
+                    );
+                    $originalName = str_replace(' ', '-', $originalName);
+                    $fileName = uniqid() . '_' . $originalName . '.webp';
+                    $destination = public_path(
+                        'inputan/portfolio/detailimg'
+                    );
+                    if (!file_exists($destination)) {
+                        mkdir($destination, 0755, true);
+                    }
+                    $image = $manager->decode($file);
+
+                    // Resize maksimal 1920px
+                    $image->scaleDown(width: 1920);
+
+                    // Convert ke WebP quality 80
+                    $encoded = $image->encodeUsingFormat(
+                        Format::WEBP,
+                        quality: 80
+                    );
+                    $encoded->save(
+                        $destination . '/' . $fileName
+                    );
+
+                    // Simpan ke database
                     G_Portfolio::create([
                         'portfolio_id' => $portfolio_id,
-                        'image'     => $fileName,
-                        'created_at' => now(),
-                        'updated_at' => now(),
+                        'image'        => $fileName,
+                        'created_at'   => now(),
+                        'updated_at'   => now(),
                     ]);
                 }
             }
@@ -1392,33 +1561,101 @@ class MasterController extends Controller
             'tahun' => $request->tahun,
             'slug' => $slug
         ];
-
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
-            $originalName = $thumbnail->getClientOriginalName();
-            $originalName = str_replace(' ', '-', $originalName);
-            $thumbnailName = uniqid() . '_foto_' . $originalName;
-            $thumbnail->move(
-                public_path('inputan/portfolio/'),
-                $thumbnailName
+
+            // Nama file tanpa extension
+            $originalName = pathinfo(
+                $thumbnail->getClientOriginalName(),
+                PATHINFO_FILENAME
             );
-            // Simpan path ke database
+            $originalName = str_replace(' ', '-', $originalName);
+            $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+            $destination = public_path('inputan/portfolio/');
+            if (!file_exists($destination)) {
+                mkdir($destination, 0755, true);
+            }
+            // Gunakan GD
+            $manager = ImageManager::usingDriver(Driver::class);
+            // Baca file upload
+            $image = $manager->decode($thumbnail);
+            // Resize maksimal 1920px, rasio tetap
+            $image->scaleDown(width: 1920);
+            // Convert ke WebP + compression
+            $encoded = $image->encodeUsingFormat(
+                Format::WEBP,
+                quality: 80
+            );
+            $encoded->save(
+                $destination . $thumbnailName
+            );
+
             $data['foto'] = 'inputan/portfolio/' . $thumbnailName;
         }
+        // if ($request->hasFile('foto')) {
+
+        //     $thumbnail = $request->file('foto');
+        //     $originalName = $thumbnail->getClientOriginalName();
+        //     $originalName = str_replace(' ', '-', $originalName);
+        //     $thumbnailName = uniqid() . '_foto_' . $originalName;
+        //     $thumbnail->move(
+        //         public_path('inputan/portfolio/'),
+        //         $thumbnailNamei
+        //     // Simpan path ke database
+        //     $data['foto'] = 'inputan/portfolio/' . $thumbnailName;
+        // }
         Portfolio::where('id', $id)->update($data);
         $portfolio_id = $id;
 
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $fileName = uniqid() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('inputan/portfolio/detailimg/'), $fileName);
+        // if ($request->hasFile('files')) {
+        //     foreach ($request->file('files') as $file) {
+        //         $fileName = uniqid() . '_' . $file->getClientOriginalName();
+        //         $file->move(public_path('inputan/portfolio/detailimg/'), $fileName);
 
+        //         G_Portfolio::create([
+        //             'portfolio_id' => $portfolio_id,
+        //             'image'     => $fileName,
+        //             'created_at' => now(),
+        //             'updated_at' => now(),
+        //         ]);
+        //     }
+        // }
+        if ($request->hasFile('files')) {
+
+            // Gunakan Image Manager
+            $manager = ImageManager::usingDriver(Driver::class);
+            foreach ($request->file('files') as $file) {
+                $originalName = pathinfo(
+                    $file->getClientOriginalName(),
+                    PATHINFO_FILENAME
+                );
+                $originalName = str_replace(' ', '-', $originalName);
+                $fileName = uniqid() . '_' . $originalName . '.webp';
+                $destination = public_path(
+                    'inputan/portfolio/detailimg'
+                );
+                if (!file_exists($destination)) {
+                    mkdir($destination, 0755, true);
+                }
+                $image = $manager->decode($file);
+                // Resize maksimal 1920px
+                $image->scaleDown(width: 1920);
+                // Convert ke WebP quality 80
+                $encoded = $image->encodeUsingFormat(
+                    Format::WEBP,
+                    quality: 80
+                );
+                $encoded->save(
+                    $destination . '/' . $fileName
+                );
+
+                // Simpan ke database
                 G_Portfolio::create([
                     'portfolio_id' => $portfolio_id,
-                    'image'     => $fileName,
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'image'        => $fileName,
+                    'created_at'   => now(),
+                    'updated_at'   => now(),
                 ]);
             }
         }
@@ -1509,20 +1746,34 @@ class MasterController extends Controller
         try {
             $thumbnailPath = null;
             if ($request->hasFile('foto')) {
+
                 $thumbnail = $request->file('foto');
-
-                $originalName = $thumbnail->getClientOriginalName();
-
-                // Ganti spasi dengan tanda -
-                $originalName = str_replace(' ', '-', $originalName);
-
-                $thumbnailName = uniqid() . '_foto_' . $originalName;
-
-                $thumbnail->move(
-                    public_path('inputan/blog/'),
-                    $thumbnailName
+                $originalName = pathinfo(
+                    $thumbnail->getClientOriginalName(),
+                    PATHINFO_FILENAME
                 );
+                $originalName = str_replace(' ', '-', $originalName);
+                $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+                $destination = public_path('inputan/blog/');
+                if (!file_exists($destination)) {
+                    mkdir($destination, 0755, true);
+                }
 
+                $manager = ImageManager::usingDriver(Driver::class);
+
+                $image = $manager->decode(
+                    $thumbnail->getPathname()
+                );
+                // Resize maksimal 1920px
+                $image->scaleDown(width: 1920);
+                // Convert ke WebP quality 80
+                $encoded = $image->encodeUsingFormat(
+                    Format::WEBP,
+                    quality: 80
+                );
+                $encoded->save(
+                    $destination . $thumbnailName
+                );
                 $thumbnailPath = 'inputan/blog/' . $thumbnailName;
             }
             $slug = Str::slug($request->judul);
@@ -1544,20 +1795,62 @@ class MasterController extends Controller
                 'slug' => $slug,
             ]);
             $blog_id = $blog->id;
-            // dd($blog_id);
             if ($request->hasFile('files')) {
-                foreach ($request->file('files') as $file) {
-                    $fileName = uniqid() . '_' . $file->getClientOriginalName();
-                    $file->move(public_path('inputan/blog/detailimg'), $fileName);
 
+                // Gunakan Image Manager
+                $manager = ImageManager::usingDriver(Driver::class);
+
+                foreach ($request->file('files') as $file) {
+                    $originalName = pathinfo(
+                        $file->getClientOriginalName(),
+                        PATHINFO_FILENAME
+                    );
+                    $originalName = str_replace(' ', '-', $originalName);
+                    $fileName = uniqid() . '_' . $originalName . '.webp';
+                    $destination = public_path(
+                        'inputan/blog/detailimg'
+                    );
+                    if (!file_exists($destination)) {
+                        mkdir($destination, 0755, true);
+                    }
+                    $image = $manager->decode($file);
+
+                    // Resize maksimal 1920px
+                    $image->scaleDown(width: 1920);
+
+                    // Convert ke WebP quality 80
+                    $encoded = $image->encodeUsingFormat(
+                        Format::WEBP,
+                        quality: 80
+                    );
+                    $encoded->save(
+                        $destination . '/' . $fileName
+                    );
+
+                    // Simpan ke database
                     G_Blog::create([
                         'blog_id' => $blog_id,
-                        'image'     => $fileName,
-                        'created_at' => now(),
-                        'updated_at' => now(),
+                        'image'        => $fileName,
+                        'created_at'   => now(),
+                        'updated_at'   => now(),
                     ]);
                 }
             }
+
+            // dd($blog_id);
+            // if ($request->hasFile('files')) {
+            //     foreach ($request->file('files') as $file) {
+            //         $fileName = uniqid() . '_' . $file->getClientOriginalName();
+            //         $file->move(public_path('inputan/blog/detailimg'), $fileName);
+
+            //         G_Blog::create([
+            //             'blog_id' => $blog_id,
+            //             'image'     => $fileName,
+            //             'created_at' => now(),
+            //             'updated_at' => now(),
+            //         ]);
+            //     }
+            // }
             // $internaldelivery_id = $internaldelivery->id;
             // foreach ($request->tag_id as $key => $tagId) {
             //     T_Blog::create([
@@ -1645,36 +1938,105 @@ class MasterController extends Controller
             'deskripsi' => $request->deskripsi,
 
         ];
-
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
-            $originalName = $thumbnail->getClientOriginalName();
-            $originalName = str_replace(' ', '-', $originalName);
-            $thumbnailName = uniqid() . '_foto_' . $originalName;
-            $thumbnail->move(
-                public_path('inputan/blog/'),
-                $thumbnailName
+
+            // Nama file tanpa extension
+            $originalName = pathinfo(
+                $thumbnail->getClientOriginalName(),
+                PATHINFO_FILENAME
             );
-            // Simpan path ke database
+            $originalName = str_replace(' ', '-', $originalName);
+            $thumbnailName = uniqid() . '_foto_' . $originalName . '.webp';
+            $destination = public_path('inputan/blog/');
+            if (!file_exists($destination)) {
+                mkdir($destination, 0755, true);
+            }
+            // Gunakan GD
+            $manager = ImageManager::usingDriver(Driver::class);
+            // Baca file upload
+            $image = $manager->decode($thumbnail);
+            // Resize maksimal 1920px, rasio tetap
+            $image->scaleDown(width: 1920);
+            // Convert ke WebP + compression
+            $encoded = $image->encodeUsingFormat(
+                Format::WEBP,
+                quality: 80
+            );
+            $encoded->save(
+                $destination . $thumbnailName
+            );
+
             $data['foto'] = 'inputan/blog/' . $thumbnailName;
         }
+
+        // if ($request->hasFile('foto')) {
+
+        //     $thumbnail = $request->file('foto');
+        //     $originalName = $thumbnail->getClientOriginalName();
+        //     $originalName = str_replace(' ', '-', $originalName);
+        //     $thumbnailName = uniqid() . '_foto_' . $originalName;
+        //     $thumbnail->move(
+        //         public_path('inputan/blog/'),
+        //         $thumbnailName
+        //     );
+        //     // Simpan path ke database
+        //     $data['foto'] = 'inputan/blog/' . $thumbnailName;
+        // }
         Blog::where('id', $id)->update($data);
         $blog_id = $id;
-
         if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $fileName = uniqid() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('inputan/blog/detailimg/'), $fileName);
 
+            // Gunakan Image Manager
+            $manager = ImageManager::usingDriver(Driver::class);
+            foreach ($request->file('files') as $file) {
+                $originalName = pathinfo(
+                    $file->getClientOriginalName(),
+                    PATHINFO_FILENAME
+                );
+                $originalName = str_replace(' ', '-', $originalName);
+                $fileName = uniqid() . '_' . $originalName . '.webp';
+                $destination = public_path(
+                    'inputan/blog/detailimg'
+                );
+                if (!file_exists($destination)) {
+                    mkdir($destination, 0755, true);
+                }
+                $image = $manager->decode($file);
+                // Resize maksimal 1920px
+                $image->scaleDown(width: 1920);
+                // Convert ke WebP quality 80
+                $encoded = $image->encodeUsingFormat(
+                    Format::WEBP,
+                    quality: 80
+                );
+                $encoded->save(
+                    $destination . '/' . $fileName
+                );
+
+                // Simpan ke database
                 G_Blog::create([
                     'blog_id' => $blog_id,
-                    'image'     => $fileName,
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    'image'        => $fileName,
+                    'created_at'   => now(),
+                    'updated_at'   => now(),
                 ]);
             }
         }
+        // if ($request->hasFile('files')) {
+        //     foreach ($request->file('files') as $file) {
+        //         $fileName = uniqid() . '_' . $file->getClientOriginalName();
+        //         $file->move(public_path('inputan/blog/detailimg/'), $fileName);
+
+        //         G_Blog::create([
+        //             'blog_id' => $blog_id,
+        //             'image'     => $fileName,
+        //             'created_at' => now(),
+        //             'updated_at' => now(),
+        //         ]);
+        //     }
+        // }
         Blog::where('id', $id)->update($data);
         return response()->json([
             'status'  => 1,

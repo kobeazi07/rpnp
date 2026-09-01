@@ -28,9 +28,13 @@
             <h2 class="fw-bold hijau-1 mt-3 ">Requirement: </h2>
             {!! str_replace('&nbsp;', ' ', $career->requirement) !!}
         </div>
-        <div class="row  mt-3 mb-5 d-flex justify-content-center">
-            <a class="btn-hover-bg rounded-btn w-40 btn btn-primary text-white py-2 px-4 rounded-btn"
-                href="{{ $career->link_daftar }}">Daftar</a>
-        </div>
+        @if (!empty($career->link_daftar))
+            <div class="row mt-3 mb-5 d-flex justify-content-center">
+                <a class="btn-hover-bg rounded-btn w-40 btn btn-primary text-white py-2 px-4 rounded-btn"
+                    href="{{ $career->link_daftar }}">
+                    Daftar
+                </a>
+            </div>
+        @endif
     </div>
 @endsection

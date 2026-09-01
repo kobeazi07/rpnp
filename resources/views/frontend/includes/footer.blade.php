@@ -8,10 +8,13 @@
                       <p class="mb-4 mt-4">No.38 B, Komplek Harmoni Indah, Jl. Husein Hamzah, Pal Lima, Pontianak Barat,
                           Pontianak, West Kalimantan 78114</p>
                       <div class="row">
-                          <a href="#" class="btn-square text-white me-2"><i class="fab fa-facebook-f"></i></a>
-                          <a href="#" class="btn-square text-white me-2"><i class="fab fa-instagram"></i></a>
+                          <a href="{{ $setting->link_facebook }}" class="btn-square text-white me-2"><i
+                                  class="fab fa-facebook-f"></i></a>
+                          <a href="{{ $setting->link_instagram }}" class="btn-square text-white me-2"><i
+                                  class="fab fa-instagram"></i></a>
 
-                          <a href="#" class="btn-square text-white me-0"><i class="fab fa-linkedin-in"></i></a>
+                          <a href="{{ $setting->link_linkedin }}" class="btn-square text-white me-0"><i
+                                  class="fab fa-linkedin-in"></i></a>
                       </div>
                   </div>
               </div>
@@ -29,12 +32,12 @@
               <div class="col-md-6 col-lg-6 col-xl-4">
                   <div class="footer-item d-flex flex-column">
                       <h4 class="mb-4 text-white">Fast Link</h4>
-                      <a href=""> Home</a>
-                      <a href=""> About</a>
-                      <a href=""> Our Team</a>
-                      <a href="">Portfolio</a>
-                      <a href="">Carerr</a>
-                      <a href=""> Blog</a>
+                      <a href="{{ route('HalamanHome') }}"> Home</a>
+                      <a href="{{ route('HalamanAbout') }}"> About</a>
+                      <a href="{{ route('HalamanAbout') }}#ourteam"> Our Team</a>
+                      <a href="{{ route('HalamanHome') }}#portfolio">Portfolio</a>
+                      <a href="{{ route('HalamanCarerr') }}">Carerr</a>
+                      <a href="{{ route('HalamanBlog') }}"> Blog</a>
                   </div>
               </div>
 
