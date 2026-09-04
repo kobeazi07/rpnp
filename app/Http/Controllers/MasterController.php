@@ -266,13 +266,13 @@ class MasterController extends Controller
     public function edit_partner(Request $request, $id)
     {
 
-        $partner = Partner::find($id);
+        $partner = Partner::findOrFail($id);
         $data = [
             'nama' => $request->nama,
         ];
 
         if ($request->hasFile('logo')) {
-
+            $oldPhoto = $partner->logo;
             $thumbnail = $request->file('logo');
             $originalName = $thumbnail->getClientOriginalName();
             $originalName = str_replace(' ', '-', $originalName);
@@ -283,6 +283,12 @@ class MasterController extends Controller
             );
             // Simpan path ke database
             $data['logo'] = 'inputan/partner/' . $thumbnailName;
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
 
         Partner::where('id', $id)->update($data);
@@ -376,14 +382,14 @@ class MasterController extends Controller
     public function edit_services(Request $request, $id)
     {
 
-        $partner = Services::find($id);
+        $services = Services::findOrFail($id);
         $data = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
         ];
 
         if ($request->hasFile('image')) {
-
+            $oldPhoto = $services->image;
             $thumbnail = $request->file('image');
             $originalName = $thumbnail->getClientOriginalName();
             $originalName = str_replace(' ', '-', $originalName);
@@ -394,6 +400,12 @@ class MasterController extends Controller
             );
             // Simpan path ke database
             $data['image'] = 'inputan/services/' . $thumbnailName;
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
 
         Services::where('id', $id)->update($data);
@@ -488,7 +500,7 @@ class MasterController extends Controller
     public function edit_testimoni(Request $request, $id)
     {
 
-        $partner = Testimoni::find($id);
+        $testimoni = Testimoni::findOrFail($id);
         $data = [
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
@@ -498,6 +510,7 @@ class MasterController extends Controller
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
+            $oldPhoto = $testimoni->foto;
             $originalName = $thumbnail->getClientOriginalName();
             $originalName = str_replace(' ', '-', $originalName);
             $thumbnailName = uniqid() . '_foto_' . $originalName;
@@ -507,6 +520,12 @@ class MasterController extends Controller
             );
             // Simpan path ke database
             $data['foto'] = 'inputan/testimoni/' . $thumbnailName;
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
 
         Testimoni::where('id', $id)->update($data);
@@ -707,7 +726,7 @@ class MasterController extends Controller
     public function edit_galeri(Request $request, $id)
     {
 
-        $partner = Galeri::find($id);
+        $galeri = Galeri::findOrFail($id);
         $data = [
             'judul' => $request->judul,
 
@@ -715,7 +734,7 @@ class MasterController extends Controller
         if ($request->hasFile('image')) {
 
             $thumbnail = $request->file('image');
-
+            $oldPhoto = $galeri->image;
             // Nama file tanpa extension
             $originalName = pathinfo(
                 $thumbnail->getClientOriginalName(),
@@ -743,6 +762,13 @@ class MasterController extends Controller
             );
 
             $data['image'] = 'inputan/galeri/' . $thumbnailName;
+
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
         // if ($request->hasFile('image')) {
 
@@ -850,7 +876,7 @@ class MasterController extends Controller
     public function edit_staff(Request $request, $id)
     {
 
-        $partner = Staff::find($id);
+        $staff = Staff::findOrFail($id);
         $data = [
             'nama_lengkap' => $request->nama_lengkap,
             'status' => $request->status,
@@ -860,6 +886,7 @@ class MasterController extends Controller
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
+            $oldPhoto = $staff->foto;
             $originalName = $thumbnail->getClientOriginalName();
             $originalName = str_replace(' ', '-', $originalName);
             $thumbnailName = uniqid() . '_foto_' . $originalName;
@@ -869,6 +896,12 @@ class MasterController extends Controller
             );
             // Simpan path ke database
             $data['foto'] = 'inputan/staff/' . $thumbnailName;
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
 
         Staff::where('id', $id)->update($data);
@@ -1285,7 +1318,7 @@ class MasterController extends Controller
     public function edit_career(Request $request, $id)
     {
 
-        $partner = Career::find($id);
+        $career = Career::findOrFail($id);
         $slug = Str::slug($request->judul);
         $originalSlug = $slug;
         $count = 1;
@@ -1310,7 +1343,8 @@ class MasterController extends Controller
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
-
+            $oldPhoto = $career->foto;
+            // Nama file tanpa extension
             // Nama file tanpa extension
             $originalName = pathinfo(
                 $thumbnail->getClientOriginalName(),
@@ -1338,6 +1372,12 @@ class MasterController extends Controller
             );
 
             $data['foto'] = 'inputan/career/' . $thumbnailName;
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
         Career::where('id', $id)->update($data);
         return response()->json([
@@ -1537,7 +1577,7 @@ class MasterController extends Controller
     public function edit_portfolio(Request $request, $id)
     {
 
-        $partner = Portfolio::find($id);
+        $partner = Portfolio::findOrFail($id);
         $slug = Str::slug($request->judul);
 
         // Cek apakah slug sudah digunakan artikel lain
@@ -1564,7 +1604,8 @@ class MasterController extends Controller
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
-
+            // Simpan nama file lama 
+            $oldPhoto = $partner->foto;
             // Nama file tanpa extension
             $originalName = pathinfo(
                 $thumbnail->getClientOriginalName(),
@@ -1592,6 +1633,13 @@ class MasterController extends Controller
             );
 
             $data['foto'] = 'inputan/portfolio/' . $thumbnailName;
+
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
         // if ($request->hasFile('foto')) {
 
@@ -1915,7 +1963,7 @@ class MasterController extends Controller
     public function edit_blog(Request $request, $id)
     {
 
-        $partner = Blog::find($id);
+        $blog = Blog::findOrFail($id);
         $slug = Str::slug($request->judul);
 
         // Cek apakah slug sudah digunakan artikel lain
@@ -1941,7 +1989,8 @@ class MasterController extends Controller
         if ($request->hasFile('foto')) {
 
             $thumbnail = $request->file('foto');
-
+            // Simpan nama file lama 
+            $oldPhoto = $blog->foto;
             // Nama file tanpa extension
             $originalName = pathinfo(
                 $thumbnail->getClientOriginalName(),
@@ -1969,6 +2018,12 @@ class MasterController extends Controller
             );
 
             $data['foto'] = 'inputan/blog/' . $thumbnailName;
+            if (!empty($oldPhoto)) {
+                $oldPhotoPath = public_path($oldPhoto);
+                if (file_exists($oldPhotoPath)) {
+                    unlink($oldPhotoPath);
+                }
+            }
         }
 
         // if ($request->hasFile('foto')) {
