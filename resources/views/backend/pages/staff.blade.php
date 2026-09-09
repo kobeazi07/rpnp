@@ -51,6 +51,10 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                        <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="exampleFormControlTextarea1">foto</label>
                                         <div class="input-group ">
                                             <div class="input-group-prepend">
@@ -167,6 +171,12 @@
 
                                                                 </select>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label
+                                                                    for="deskripsi-{{ $staff->id }}">Deskripsi</label>
+                                                                <textarea class="form-control editor" id="deskripsi2-{{ $staff->id }}" name="deskripsi"
+                                                                    placeholder="Masukkan deskripsi">{{ $staff->deskripsi }}</textarea>
+                                                            </div>
 
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlTextarea1">foto</label>
@@ -229,7 +239,9 @@
         $('#btnSavestaff').on('click', function() {
             let form = document.getElementById('formstaff');
             let formData = new FormData(form);
-
+            if (CKEDITOR.instances.deskripsi) {
+                formData.set('deskripsi', CKEDITOR.instances.deskripsi.getData());
+            }
 
             $.ajax({
                 url: "{{ route('Tambah_staff') }}",
@@ -281,13 +293,28 @@
                 }
             });
         });
+        document.addEventListener("DOMContentLoaded", function() {
+            CKEDITOR.replace('deskripsi');
+        });
+        document.addEventListener("DOMContentLoaded", function() {
 
+            document.querySelectorAll('.editor').forEach(function(el) {
+
+                CKEDITOR.replace(el.id);
+
+            });
+
+        });
         $(document).on('submit', '.editformstaff', function(e) {
             e.preventDefault();
 
             let form = $(this);
             let id = form.data('id');
             let formData = new FormData(this);
+            let editorId = 'deskripsi2-' + id;
+            if (CKEDITOR.instances[editorId]) {
+                formData.set('deskripsi', CKEDITOR.instances[editorId].getData());
+            }
             $.ajax({
                 url: "{{ url('/edit_staff') }}/" + id,
                 type: "POST",

@@ -25,6 +25,7 @@ use App\Models\Setting;
 // use App\Models\Portfolio;
 use App\Models\About;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -115,5 +116,56 @@ class HomeController extends Controller
         // $portfolio = Portfolio::find($id);
         $g_portfolio = G_Portfolio::where('portfolio_id', $portfolio->id)->get();
         return view('frontend.pages.dportfolio', compact('portfolio', 'g_portfolio'));
+    }
+    public function contact()
+    {
+        $setting = Setting::first();
+        return view('frontend.pages.contact', compact('setting'));
+    }
+    public function send(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'email'      => 'required|email',
+            'phone'      => 'required',
+            'subject'    => 'required',
+            'message'    => 'required',
+        ]);
+
+        Mail::send(
+            'emails.contact',
+            [
+                'first_name' => $request->first_name,
+                'email'      => $request->email,
+                'phone'      => $request->phone,
+                'subject'    => $request->subject,
+                'content'    => $request->message,
+            ],
+            function ($mail) use ($request) {
+
+                // Pengirim tetap akun Gmail SMTP
+                $mail->from(
+                    config('mail.from.address'),
+                    config('mail.from.name')
+                );
+
+                // Email tujuan
+                $mail->to('kobeazi07@gmail.com');
+
+                // Ketika tombol Reply ditekan,
+                // balasan dikirim ke email pengunjung
+                $mail->replyTo(
+                    $request->email,
+                    $request->first_name
+                );
+
+                $mail->subject($request->subject);
+            }
+        );
+
+        return back()->with(
+            'success',
+            'Your message has been sent successfully.'
+        );
     }
 }

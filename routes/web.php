@@ -11,6 +11,8 @@ Route::get('/dblog/{blog:slug}', [HomeController::class, 'dblog'])->name('Halama
 Route::get('/carerr', [HomeController::class, 'carerr'])->name('HalamanCarerr');
 Route::get('/dcarerr/{career:slug}', [HomeController::class, 'dcarerr'])->name('HalamanDCarerr');
 Route::get('/dportfolio/{portfolio:slug}', [HomeController::class, 'dportfolio'])->name('HalamanDPortfolio');
+Route::get('/contact', [HomeController::class, 'contact'])->name('HalamanContact');
+Route::post('/contact/send', [HomeController::class, 'send'])->name('contact.send');
 
 Route::get('/admin', [MasterController::class, 'halamanlogin'])->name('HalamanLogin');
 Route::post('/login', [MasterController::class, 'login'])->name('login');
@@ -73,7 +75,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
 
     Route::get('admin_kategori_portfolio', [MasterController::class, 'admin_kategori_portfolio'])->name('HalamanAdminkategori_portfolio');
     Route::post('/tambah_kategori_portfolio', [MasterController::class, 'tambah_kategori_portfolio'])->name('Tambah_kategori_portfolio');
-    Route::post('/edit_kategori_portfolio/{id}', [MasterController::class, 'edit_kategori_portfolio'])->name('Edit_kategori_portfolio');
+    Route::post('/edit_katego ri_portfolio/{id}', [MasterController::class, 'edit_kategori_portfolio'])->name('Edit_kategori_portfolio');
     Route::delete('/kategori_portfolio/{kategori_portfolio}', [MasterController::class, 'kategori_portfolio_destroy'])->name('kategori_portfolio.destroy');
 
     Route::get('admin_career', [MasterController::class, 'admin_career'])->name('HalamanAdmincareer');

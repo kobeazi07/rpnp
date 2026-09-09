@@ -7,12 +7,10 @@
               <div class="row align-items-center justify-content-center">
                   <div class="col-md-8">
                       <div class="topbar-info d-flex flex-wrap">
-                          <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $setting->email }}"
-                              class="text-light me-4"><i
-                                  class="fas fa-envelope text-white me-2 ">{{ $setting->email }}</i></a>
+                          <a href="mailto:{{ $setting->email }}" class="text-light me-3"><i
+                                  class="fas fa-envelope text-white"></i></a>
                           <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/^0/', '62', $setting->no_wa) }}&text={{ $setting->text_wa }}"
-                              class="text-light"><i
-                                  class="fas fa-phone-alt text-white me-2"></i>{{ $setting->no_wa }}</a>
+                              class="text-light"><i class="fas fa-phone-alt text-white me-2"></i></a>
                       </div>
                   </div>
                   <div class="col-md-4">
@@ -31,8 +29,8 @@
           </div>
           <nav class="navbar navbar-light bg-light navbar-expand-xl rounded-nav">
               <a href="{{ route('HalamanHome') }}" class="navbar-brand ms-5 mb-2 mt-2 w-25">
-                  <img src="{{ asset('frontend/img/logorpnp.png') }}" class="w-25" alt="">
-                  {{-- <h1 class="text-primary display-5">Environs</h1> --}}
+                  <img src="{{ asset('frontend/img/logo-rpnp.png') }}" class="img-fluid" alt="">
+                  {{-- <p class="logo-text hijau-1 fw-bold mt-1">PT. RPNP DESAIN HIJAU INDONESIA</p> --}}
               </a>
               <button class="navbar-toggler py-2 px-3 me-3" type="button" data-bs-toggle="collapse"
                   data-bs-target="#navbarCollapse">

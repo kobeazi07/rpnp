@@ -4,11 +4,11 @@
     <!-- Carousel Start -->
     <div class="container-fluid carousel-header vh-100 px-0">
         <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
+            {{-- <ol class="carousel-indicators">
                 <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
                 <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
                 <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
-            </ol>
+            </ol> --}}
             <div class="carousel-inner" role="listbox">
 
                 <div class="carousel-item active">
@@ -52,7 +52,7 @@
             <div class="row g-5">
                 <div class="col  -xl-5">
                     <div class="h-100 ">
-                        <img src="{{ asset('frontend/img/about.png') }}" class=" rounded-image img-fluid w-100 h-100"
+                        <img src="{{ asset('frontend/img/about.jpeg') }}" class=" rounded-image img-fluid w-100 h-100"
                             alt="Image" style="object-fit: cover;">
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                             <li class="nav-item mb-3">
                                 <a class="rounded-btn btn-hover-border d-flex py-2 mx-3 text-center bg-white"
                                     data-bs-toggle="pill" href="#tab-2">
-                                    <span class="text-dark" style="width: 150px;">Vission</span>
+                                    <span class="text-dark" style="width: 150px;">Vision</span>
                                 </a>
                             </li>
                             <li class="nav-item mb-3">
@@ -659,7 +659,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="volunteer-img rounded-image">
-                                <img src="{{ asset('frontend/img/partner-2.jpg') }}" class="img-fluid w-100"
+                                <img src="{{ asset('frontend/img/partner-2.jpeg') }}" class="img-fluid w-100"
                                     alt="Image">
 
                             </div>
@@ -688,14 +688,24 @@
                         every project.
                     </p>
 
-                    <div class="row">
-                        @foreach ($partner as $partner)
-                            <div class="col-3 me-3 mb-3 d-flex align-items-center justify-content-center">
-                                <img src="{{ $partner->logo }}" class="img-fluid w-100" alt="{{ $partner->nama }}">
+                    <div class="owl-carousel partner-carousel">
+
+                        @foreach ($partner->chunk(6) as $partners)
+                            <div class="partner-slide">
+
+                                @foreach ($partners as $item)
+                                    <div
+                                        class="partner-item col-12 col-md-12 mb-3 d-flex align-items-center justify-content-center">
+                                        <img src="{{ $item->logo }}" class="img-fluid rounded-image "
+                                            alt="{{ $item->nama }}">
+                                    </div>
+                                @endforeach
+
                             </div>
                         @endforeach
 
                     </div>
+
                 </div>
             </div>
         </div>
@@ -866,4 +876,25 @@
         </div>
     </div>
     <!-- Volunteers End -->
+
+    <script>
+        $(document).ready(function() {
+
+            $('.partner-carousel').owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 0,
+
+                nav: false,
+                dots: true,
+
+                autoplay: true,
+                autoplayTimeout: 2000,
+                autoplayHoverPause: true,
+
+                smartSpeed: 600
+            });
+
+        });
+    </script>
 @endsection

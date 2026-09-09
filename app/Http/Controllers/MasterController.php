@@ -857,6 +857,7 @@ class MasterController extends Controller
                 'foto' =>  $thumbnailPath,
                 'status' => $request->status,
                 'jabatan' => $request->jabatan,
+                'deskripsi' => $request->deskripsi
             ]);
 
             DB::commit();
@@ -881,6 +882,7 @@ class MasterController extends Controller
             'nama_lengkap' => $request->nama_lengkap,
             'status' => $request->status,
             'jabatan' => $request->jabatan,
+            'deskripsi' => $request->deskripsi
         ];
 
         if ($request->hasFile('foto')) {
@@ -1665,7 +1667,7 @@ class MasterController extends Controller
         //             'portfolio_id' => $portfolio_id,
         //             'image'     => $fileName,
         //             'created_at' => now(),
-        //             'updated_at' => now(),
+        //             'updated_at' => now(), v
         //         ]);
         //     }
         // }
