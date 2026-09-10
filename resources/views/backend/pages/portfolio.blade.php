@@ -267,17 +267,17 @@
 
                                                             <div class="form-group">
                                                                 <label
-                                                                    for="deskripsi-sow-{{ $portfolio->id }}">SOW</label>
+                                                                    for="deskripsi-sow2-{{ $portfolio->id }}">SOW</label>
 
-                                                                <textarea class="form-control editor" id="deskripsi-sow-{{ $portfolio->id }}" name="sow"
+                                                                <textarea class="form-control editor" id="deskripsi-sow2-{{ $portfolio->id }}" name="sow"
                                                                     placeholder="Masukkan SOW portfolio">{{ $portfolio->sow }}</textarea>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <label
-                                                                    for="deskripsi-{{ $portfolio->id }}">Deskripsi</label>
+                                                                    for="deskripsi2-{{ $portfolio->id }}">Deskripsi</label>
 
-                                                                <textarea class="form-control editor" id="deskripsi-{{ $portfolio->id }}" name="deskripsi"
+                                                                <textarea class="form-control editor" id="deskripsi2-{{ $portfolio->id }}" name="deskripsi"
                                                                     placeholder="Masukkan portfolio">{{ $portfolio->deskripsi }}</textarea>
                                                             </div>
                                                             <div class="input-group mb-3">
@@ -506,18 +506,111 @@
 
 
         // Optional: destroy editor saat modal ditutup
-        document.addEventListener("DOMContentLoaded", function() {
-            CKEDITOR.replace('deskripsi');
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     CKEDITOR.replace('deskripsi');
+        // });
+        $(document).ready(function() {
+            if (
+                document.getElementById('deskripsi') &&
+                !CKEDITOR.instances['deskripsi']
+            ) {
+                CKEDITOR.replace('deskripsi', {
+                    height: 200
+                });
+            }
         });
-        document.addEventListener("DOMContentLoaded", function() {
-
-            document.querySelectorAll('.editor').forEach(function(el) {
-
-                CKEDITOR.replace(el.id);
-
-            });
-
+        $(document).ready(function() {
+            if (
+                document.getElementById('deskripsi-sow') &&
+                !CKEDITOR.instances['deskripsi-sow']
+            ) {
+                CKEDITOR.replace('deskripsi-sow', {
+                    height: 200
+                });
+            }
         });
+        $(document).on(
+            'click',
+            'button[data-toggle="modal"][data-target^="#Edit-"]',
+            function() {
+
+                let target = $(this).attr('data-target');
+                let id = target.replace('#Edit-', '');
+
+                console.log('Edit ID:', id);
+
+                // CKEditor SOW
+                let sowEditorId = 'deskripsi-sow2-' + id;
+
+                if (
+                    document.getElementById(sowEditorId) &&
+                    !CKEDITOR.instances[sowEditorId]
+                ) {
+                    CKEDITOR.replace(sowEditorId, {
+                        height: 200
+                    });
+
+                    console.log('CKEditor SOW dibuat:', sowEditorId);
+                }
+
+                // CKEditor DESKRIPSI
+                let deskripsiEditorId = 'deskripsi2-' + id;
+
+                if (
+                    document.getElementById(deskripsiEditorId) &&
+                    !CKEDITOR.instances[deskripsiEditorId]
+                ) {
+                    CKEDITOR.replace(deskripsiEditorId, {
+                        height: 200
+                    });
+
+                    console.log(
+                        'CKEditor Deskripsi dibuat:',
+                        deskripsiEditorId
+                    );
+                }
+            }
+        );
+        // $(document).on('click', 'button[data-toggle="modal"][data-target^="#Edit-"]', function() {
+
+        //     let target = $(this).attr('data-target');
+
+        //     console.log('Tombol edit:', target);
+
+        //     $(target).one('shown.bs.modal', function() {
+
+        //         let textarea = $(this).find('textarea.editor');
+
+        //         if (!textarea.length) {
+        //             console.log('Textarea editor tidak ditemukan di:', target);
+        //             return;
+        //         }
+
+        //         let editorId = textarea.attr('id');
+
+        //         console.log('Editor ID:', editorId);
+
+        //         if (!CKEDITOR.instances[editorId]) {
+
+        //             CKEDITOR.replace(editorId, {
+        //                 height: 200
+        //             });
+
+        //             console.log('CKEditor dibuat:', editorId);
+        //         }
+
+        //     });
+
+        // });
+        // document.addEventListener("DOMContentLoaded", function() {
+
+        //     document.querySelectorAll('.editor').forEach(function(el) {
+
+        //         CKEDITOR.replace(el.id);
+
+        //     });
+
+        // });
 
         function deletePicture(id) {
             if (!confirm('Hapus gambar ini?')) return;
@@ -550,6 +643,26 @@
             let formData = new FormData(this);
 
             let editorId = 'deskripsi2-' + id;
+            // SOW
+            let sowEditorId = 'deskripsi-sow2-' + id;
+
+            if (CKEDITOR.instances[sowEditorId]) {
+                formData.set(
+                    'sow',
+                    CKEDITOR.instances[sowEditorId].getData()
+                );
+            }
+
+            // DESKRIPSI
+            let deskripsiEditorId = 'deskripsi2-' + id;
+
+            if (CKEDITOR.instances[deskripsiEditorId]) {
+                formData.set(
+                    'deskripsi',
+                    CKEDITOR.instances[deskripsiEditorId].getData()
+                );
+            }
+
             if (CKEDITOR.instances[editorId]) {
                 formData.set('deskripsi', CKEDITOR.instances[editorId].getData());
             }

@@ -1238,7 +1238,7 @@ class MasterController extends Controller
     // career
     public function admin_career()
     {
-        $career = Career::get();
+        $career = Career::orderBy('id', 'desc')->get();
         $kcareer = Kategori_Career::get();
         $kcareerss = Kategori_Career::get();
         return view('backend.pages.career', compact('career', 'kcareer', 'kcareerss'));
@@ -1421,7 +1421,7 @@ class MasterController extends Controller
     // portfolio
     public function admin_portfolio()
     {
-        $portfolio = Portfolio::with('galeri_portfolio')->get();
+        $portfolio = Portfolio::with('galeri_portfolio')->orderBy('id', 'desc')->get();
         $b_type = Building_Type::get();
         $b_typess = Building_Type::get();
         $kategori = Kategori_Portfolio::get();
@@ -1781,7 +1781,7 @@ class MasterController extends Controller
     // blog
     public function admin_blog()
     {
-        $blog = Blog::with('galeri_blog')->get();
+        $blog = Blog::with('galeri_blog')->orderBy('id', 'desc')->get();
         $k_blog = Kategori_Blog::get();
         $k_blogss = Kategori_Blog::get();
         $tag = Tag::get();

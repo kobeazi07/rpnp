@@ -173,7 +173,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label
-                                                                    for="deskripsi-{{ $staff->id }}">Deskripsi</label>
+                                                                    for="deskripsi2-{{ $staff->id }}">Deskripsi</label>
                                                                 <textarea class="form-control editor" id="deskripsi2-{{ $staff->id }}" name="deskripsi"
                                                                     placeholder="Masukkan deskripsi">{{ $staff->deskripsi }}</textarea>
                                                             </div>
@@ -293,43 +293,164 @@
                 }
             });
         });
-        document.addEventListener("DOMContentLoaded", function() {
-            CKEDITOR.replace('deskripsi');
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     CKEDITOR.replace('deskripsi');
+        // });
+        // document.addEventListener("DOMContentLoaded", function() {
+
+        //     document.querySelectorAll('.editor').forEach(function(el) {
+
+        //         CKEDITOR.replace(el.id);
+
+        //     });
+
+        // });
+        // $(document).on('submit', '.editformstaff', function(e) {
+        //     e.preventDefault();
+
+        //     let form = $(this);
+        //     let id = form.data('id');
+        //     let formData = new FormData(this);
+        //     let editorId = 'deskripsi2-' + id;
+        //     if (CKEDITOR.instances[editorId]) {
+        //         formData.set('deskripsi', CKEDITOR.instances[editorId].getData());
+        //     }
+        //     $.ajax({
+        //         url: "{{ url('/edit_staff') }}/" + id,
+        //         type: "POST",
+        //         data: formData,
+        //         processData: false,
+        //         contentType: false,
+        //         success: function(response) {
+        //             Swal.fire('Sukses', response.message, 'success');
+        //             $('#Edit-' + id).modal('hide');
+        //             location.reload();
+        //         },
+        //         error: function(xhr) {
+        //             Swal.fire('Error', 'Terjadi kesalahan', 'error');
+        //         }
+        //     });
+        // });
+
+        // $(document).on('shown.bs.modal', '.modal', function() {
+        //     $(this).find('textarea.editor').each(function() {
+        //         let editorId = this.id;
+        //         if (!editorId) {
+        //             return;
+        //         }
+        //         if (!CKEDITOR.instances[editorId]) {
+        //             CKEDITOR.replace(editorId, {
+        //                 height: 200
+        //             });
+        //         }
+        //     });
+        // });
+        $(document).ready(function() {
+            if (
+                document.getElementById('deskripsi') &&
+                !CKEDITOR.instances['deskripsi']
+            ) {
+                CKEDITOR.replace('deskripsi', {
+                    height: 200
+                });
+            }
         });
-        document.addEventListener("DOMContentLoaded", function() {
+        $(document).on('click', 'button[data-toggle="modal"][data-target^="#Edit-"]', function() {
 
-            document.querySelectorAll('.editor').forEach(function(el) {
+            let target = $(this).attr('data-target');
 
-                CKEDITOR.replace(el.id);
+            console.log('Tombol edit:', target);
+
+            $(target).one('shown.bs.modal', function() {
+
+                let textarea = $(this).find('textarea.editor');
+
+                if (!textarea.length) {
+                    console.log('Textarea editor tidak ditemukan di:', target);
+                    return;
+                }
+
+                let editorId = textarea.attr('id');
+
+                console.log('Editor ID:', editorId);
+
+                if (!CKEDITOR.instances[editorId]) {
+
+                    CKEDITOR.replace(editorId, {
+                        height: 200
+                    });
+
+                    console.log('CKEditor dibuat:', editorId);
+                }
 
             });
 
         });
+
         $(document).on('submit', '.editformstaff', function(e) {
+
             e.preventDefault();
 
-            let form = $(this);
-            let id = form.data('id');
-            let formData = new FormData(this);
-            let editorId = 'deskripsi2-' + id;
+            const form = $(this);
+            const id = form.data('id');
+
+            const formData = new FormData(this);
+
+            const editorId = 'deskripsi2-' + id;
+
+
             if (CKEDITOR.instances[editorId]) {
-                formData.set('deskripsi', CKEDITOR.instances[editorId].getData());
+
+                formData.set(
+                    'deskripsi',
+                    CKEDITOR.instances[editorId].getData()
+                );
+
             }
+
             $.ajax({
+
                 url: "{{ url('/edit_staff') }}/" + id,
+
                 type: "POST",
+
                 data: formData,
+
                 processData: false,
+
                 contentType: false,
+
                 success: function(response) {
-                    Swal.fire('Sukses', response.message, 'success');
-                    $('#Edit-' + id).modal('hide');
-                    location.reload();
+
+                    Swal.fire(
+                        'Sukses',
+                        response.message,
+                        'success'
+                    ).then(function() {
+
+                        $('#Edit-' + id).modal('hide');
+
+                        location.reload();
+
+                    });
+
                 },
+
                 error: function(xhr) {
-                    Swal.fire('Error', 'Terjadi kesalahan', 'error');
+
+                    console.log(xhr.responseText);
+
+                    Swal.fire(
+                        'Error',
+                        'Terjadi kesalahan',
+                        'error'
+                    );
+
                 }
+
             });
+
         });
 
         $(document).on('submit', '.form-delete-staff', function(e) {

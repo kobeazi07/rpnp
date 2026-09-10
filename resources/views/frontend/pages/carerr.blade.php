@@ -25,13 +25,7 @@
                     </button>
                 </li>
 
-                <li class="nav-item  col-lg-2" role="presentation">
-                    <button class="nav-link w-100 rounded-btn fw-bold" id="pills-profile-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                        aria-selected="false">
-                        New
-                    </button>
-                </li>
+
                 <li class="nav-item col-lg-2 " role="presentation">
                     <button class="nav-link w-100 rounded-btn fw-bold" id="pills-innovation-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-innovation" type="button" role="tab" aria-controls="pills-innovation"
@@ -43,7 +37,21 @@
                     <button class="nav-link w-100 rounded-btn fw-bold" id="pills-regulation-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-regulation" type="button" role="tab" aria-controls="pills-regulation"
                         aria-selected="false">
-                        Struktur
+                        Teknik Sipil
+                    </button>
+                </li>
+                <li class="nav-item col-lg-2" role="presentation">
+                    <button class="nav-link w-100 rounded-btn fw-bold" id="pills-mep-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-mep" type="button" role="tab" aria-controls="pills-mep"
+                        aria-selected="false">
+                        MEP
+                    </button>
+                </li>
+                <li class="nav-item col-lg-2" role="presentation">
+                    <button class="nav-link w-100 rounded-btn fw-bold" id="pills-bim-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-bim" type="button" role="tab" aria-controls="pills-bim"
+                        aria-selected="false">
+                        BIM
                     </button>
                 </li>
                 <li class="nav-item col-lg-2" role="presentation">
@@ -85,34 +93,9 @@
 
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+
+                    <div class="tab-pane fade" id="pills-innovation" role="tabpanel" aria-labelledby="pills-innovation-tab"
                         tabindex="0">
-
-                        <div class="row justify-content-center mt-5 ">
-                            @foreach ($careers as $careers)
-                                {{-- new --}}
-                                <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                    <div class="event-item ">
-                                        <img src="{{ $careers->foto }}" class="img-fluid w-100 rounded-atas" alt="Image">
-                                        <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                            <h4 class="fw-bold">{{ $careers->judul }}</h4>
-                                            <h6 class="mb-2 hijau-1">Lokasi: {{ $careers->location }}</h6>
-                                            <p class="mb-4">Dealine : {{ $career->deadline }}</p>
-                                            <div class="d-flex align-items-center justify-content-start">
-                                                <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                    href="{{ route('HalamanDCarerr', ['career' => $career->slug]) }}">Read
-                                                    More</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-innovation" role="tabpanel"
-                        aria-labelledby="pills-innovation-tab" tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
                             @foreach ($careerss as $careerss)
@@ -144,9 +127,9 @@
                         aria-labelledby="pills-regulation-tab" tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">
-                            {{-- struktur --}}
+                            {{-- Teknik Sipil --}}
                             @foreach ($careersss as $careersss)
-                                @if ($careersss->Rkategori_career && $careersss->Rkategori_career->nama == 'Struktur')
+                                @if ($careersss->Rkategori_career && $careersss->Rkategori_career->nama == 'Teknik Sipil')
                                     <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
                                         <div class="event-item ">
                                             <img src="{{ $careersss->foto }}" class="img-fluid w-100 rounded-atas"
@@ -159,6 +142,64 @@
                                                 <div class="d-flex align-items-center justify-content-start">
                                                     <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
                                                         href="{{ route('HalamanDCarerr', ['career' => $career->slug]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-mep" role="tabpanel" aria-labelledby="pills-regulation-tab"
+                        tabindex="0">
+
+                        <div class="row justify-content-center mt-5 ">
+                            {{-- MEP --}}
+                            @foreach ($careermep as $careermeps)
+                                @if ($careermeps->Rkategori_career && $careermeps->Rkategori_career->nama == 'MEP')
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $careermeps->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+
+                                                <h4 class="fw-bold">{{ $careermeps->judul }}</h4>
+                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careermeps->location }}</h6>
+                                                <p class="mb-4">Dealine : {{ $careermeps->deadline }}</p>
+                                                <div class="d-flex align-items-center justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDCarerr', ['career' => $careermeps->slug]) }}">Read
+                                                        More</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-bim" role="tabpanel" aria-labelledby="pills-bim-tab"
+                        tabindex="0">
+
+                        <div class="row justify-content-center mt-5 ">
+                            {{-- Bim --}}
+                            @foreach ($careerbim as $careerbim)
+                                @if ($careerbim->Rkategori_career && $careerbim->Rkategori_career->nama == 'BIM')
+                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
+                                        <div class="event-item ">
+                                            <img src="{{ $careerbim->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="Image">
+                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
+
+                                                <h4 class="fw-bold">{{ $careerbim->judul }}</h4>
+                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careerbim->location }}</h6>
+                                                <p class="mb-4">Dealine : {{ $careerbim->deadline }}</p>
+                                                <div class="d-flex align-items-center justify-content-start">
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
+                                                        href="{{ route('HalamanDCarerr', ['career' => $careerbim->slug]) }}">Read
                                                         More</a>
                                                 </div>
 

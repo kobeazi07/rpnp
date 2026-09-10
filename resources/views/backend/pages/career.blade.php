@@ -441,8 +441,18 @@
                 e.target.nextElementSibling.innerText = e.target.files[0].name;
             }
         });
-        document.addEventListener("DOMContentLoaded", function() {
-            CKEDITOR.replace('requirement');
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     CKEDITOR.replace('requirement');
+        // });
+        $(document).ready(function() {
+            if (
+                document.getElementById('requirement') &&
+                !CKEDITOR.instances['requirement']
+            ) {
+                CKEDITOR.replace('requirement', {
+                    height: 200
+                });
+            }
         });
         $('#btnSavecareer').on('click', function() {
             let form = document.getElementById('formcareer');
@@ -505,15 +515,47 @@
                 }
             });
         });
-        document.addEventListener("DOMContentLoaded", function() {
+        // document.addEventListener("DOMContentLoaded", function() {
 
-            document.querySelectorAll('.editor').forEach(function(el) {
+        //     document.querySelectorAll('.editor').forEach(function(el) {
 
-                CKEDITOR.replace(el.id);
+        //         CKEDITOR.replace(el.id);
+
+        //     });
+
+        // });
+        $(document).on('click', 'button[data-toggle="modal"][data-target^="#Edit-"]', function() {
+
+            let target = $(this).attr('data-target');
+
+            console.log('Tombol edit:', target);
+
+            $(target).one('shown.bs.modal', function() {
+
+                let textarea = $(this).find('textarea.editor');
+
+                if (!textarea.length) {
+                    console.log('Textarea editor tidak ditemukan di:', target);
+                    return;
+                }
+
+                let editorId = textarea.attr('id');
+
+                console.log('Editor ID:', editorId);
+
+                if (!CKEDITOR.instances[editorId]) {
+
+                    CKEDITOR.replace(editorId, {
+                        height: 200
+                    });
+
+                    console.log('CKEditor dibuat:', editorId);
+                }
 
             });
 
         });
+
 
         $(document).on('submit', '.editformcareer', function(e) {
             e.preventDefault();
@@ -522,6 +564,14 @@
             let id = form.data('id');
             let formData = new FormData(this);
             let editorId = 'deskripsi2-' + id;
+            if (CKEDITOR.instances[editorId]) {
+
+                formData.set(
+                    'requirement',
+                    CKEDITOR.instances[editorId].getData()
+                );
+
+            }
             $.ajax({
                 url: "{{ url('/edit_career') }}/" + id,
                 type: "POST",

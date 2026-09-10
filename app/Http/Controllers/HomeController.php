@@ -66,7 +66,7 @@ class HomeController extends Controller
     }
     public function blog()
     {
-        $blog = Blog::get();
+        $blog = Blog::orderBy('id', 'desc')->get();
         $blogs = Blog::latest()->take(5)->get();
         $blogss = Blog::get();
         $blogsss = Blog::get();
@@ -91,17 +91,21 @@ class HomeController extends Controller
     }
     public function carerr()
     {
-        $career = Career::get();
+        $career = Career::orderBy('id', 'desc')->get();
         $careers = Career::latest()->take(5)->get();
         $careerss = Career::get();
         $careersss = Career::get();
         $careerssss = Career::get();
+        $careermep = Career::get();
+        $careerbim = Career::get();
         return view('frontend.pages.carerr', compact(
             'career',
             'careers',
             'careerss',
             'careersss',
-            'careerssss'
+            'careerssss',
+            'careermep',
+            'careerbim'
         ));
     }
     public function dcarerr($slug)

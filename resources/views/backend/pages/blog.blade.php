@@ -479,21 +479,61 @@
             }
         });
 
-
-
-        // Optional: destroy editor saat modal ditutup
-        document.addEventListener("DOMContentLoaded", function() {
-            CKEDITOR.replace('deskripsi');
+        $(document).ready(function() {
+            if (
+                document.getElementById('deskripsi') &&
+                !CKEDITOR.instances['deskripsi']
+            ) {
+                CKEDITOR.replace('deskripsi', {
+                    height: 200
+                });
+            }
         });
-        document.addEventListener("DOMContentLoaded", function() {
+        $(document).on('click', 'button[data-toggle="modal"][data-target^="#Edit-"]', function() {
 
-            document.querySelectorAll('.editor').forEach(function(el) {
+            let target = $(this).attr('data-target');
 
-                CKEDITOR.replace(el.id);
+            console.log('Tombol edit:', target);
+
+            $(target).one('shown.bs.modal', function() {
+
+                let textarea = $(this).find('textarea.editor');
+
+                if (!textarea.length) {
+                    console.log('Textarea editor tidak ditemukan di:', target);
+                    return;
+                }
+
+                let editorId = textarea.attr('id');
+
+                console.log('Editor ID:', editorId);
+
+                if (!CKEDITOR.instances[editorId]) {
+
+                    CKEDITOR.replace(editorId, {
+                        height: 200
+                    });
+
+                    console.log('CKEditor dibuat:', editorId);
+                }
 
             });
 
         });
+
+        // // Optional: destroy editor saat modal ditutup
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     CKEDITOR.replace('deskripsi');
+        // });
+        // document.addEventListener("DOMContentLoaded", function() {
+
+        //     document.querySelectorAll('.editor').forEach(function(el) {
+
+        //         CKEDITOR.replace(el.id);
+
+        //     });
+
+        // });
 
         function deletePicture(id) {
             if (!confirm('Hapus gambar ini?')) return;
