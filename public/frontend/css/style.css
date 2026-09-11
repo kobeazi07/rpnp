@@ -1008,8 +1008,16 @@
 
 .blog .blog-item .blog-img img {
     transition: 0.5s;
+ 
 }
-
+.blog-img{
+    text-align: center;
+}
+.blog-img img{
+       width: 220px !important;
+    height: 180px !important;
+    object-fit: cover;
+}
 .blog .blog-item .blog-img:hover img {
     transform: scale(1.3);
 }

@@ -31,7 +31,7 @@
             @foreach ($g_portfolio as $g_blog)
                 <div class="col-lg-6 col-xl-3 mb-3 me-1">
                     <div class="blog-item">
-                        <div class="blog-img">
+                        <div class="blog-img mt-3">
 
                             <a href="{{ asset('inputan/portfolio/detailimg/' . $g_blog->image) }}" data-lightbox="Blog-1"
                                 class="my-auto"> <img src="{{ asset('inputan/portfolio/detailimg/' . $g_blog->image) }}"
