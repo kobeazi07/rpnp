@@ -15,7 +15,7 @@
     </div>
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <ul class="nav nav-pills justify-content-center row w-100 mb-3" id="pills-tab" role="tablist">
+            {{-- <ul class="nav nav-pills justify-content-center row w-100 mb-3" id="pills-tab" role="tablist">
 
                 <li class="nav-item col-lg-2" role="presentation">
                     <button class="nav-link active w-100 rounded-btn fw-bold" id="pills-home-tab" data-bs-toggle="pill"
@@ -62,10 +62,48 @@
                     </button>
                 </li>
 
+            </ul> --}}
+            <ul class="nav nav-pills justify-content-center row w-100 mb-3" id="pills-tab" role="tablist">
+
+                {{-- ALL --}}
+                <li class="nav-item col-lg-2" role="presentation">
+                    <button class="nav-link active w-100 rounded-btn fw-bold" id="pills-all-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all"
+                        aria-selected="true">
+                        ALL
+                    </button>
+                </li>
+
+                {{-- KATEGORI CAREER --}}
+                @foreach ($kategori_careers as $kategori)
+                    <li class="nav-item col-lg-2" role="presentation">
+
+                        <button class="nav-link w-100 rounded-btn fw-bold" id="pills-kategori-{{ $kategori->id }}-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-kategori-{{ $kategori->id }}" type="button"
+                            role="tab" aria-controls="pills-kategori-{{ $kategori->id }}" aria-selected="false">
+
+                            {{ $kategori->nama }}
+
+                        </button>
+
+                    </li>
+                @endforeach
+
+                {{-- OUT OF DATE --}}
+                <li class="nav-item col-lg-2" role="presentation">
+                    <button class="nav-link w-100 rounded-btn fw-bold" id="pills-outdate-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-outdate" type="button" role="tab" aria-controls="pills-outdate"
+                        aria-selected="false">
+
+                        Out of Date
+
+                    </button>
+                </li>
+
             </ul>
             <div class="row">
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                    <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-home-tab"
                         tabindex="0">
 
                         {{-- all --}}
@@ -94,123 +132,64 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="pills-innovation" role="tabpanel" aria-labelledby="pills-innovation-tab"
-                        tabindex="0">
 
-                        <div class="row justify-content-center mt-5 ">
-                            @foreach ($careerss as $careerss)
-                                @if ($careerss->Rkategori_career && $careerss->Rkategori_career->nama == 'Arsitek')
-                                    {{-- arsitek --}}
+                    {{-- dinamesi --}}
+                    {{-- =========================
+        KATEGORI DINAMIS
+    ========================== --}}
+
+                    @foreach ($kategori_careers as $kategori)
+                        <div class="tab-pane fade" id="pills-kategori-{{ $kategori->id }}" role="tabpanel"
+                            aria-labelledby="pills-kategori-{{ $kategori->id }}-tab" tabindex="0">
+
+                            <div class="row justify-content-center mt-5">
+
+                                @foreach ($kategori->careers as $item)
                                     <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                        <div class="event-item ">
-                                            <img src="{{ $careerss->foto }}" class="img-fluid w-100 rounded-atas"
-                                                alt="Image">
-                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
-                                                <h4 class="fw-bold">{{ $careerss->judul }}</h4>
-                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careerss->location }}</h6>
-                                                <p class="mb-4">Dealine : {{ $careerss->deadline }}</p>
+                                        <div class="event-item">
+
+                                            <img src="{{ $item->foto }}" class="img-fluid w-100 rounded-atas"
+                                                alt="{{ $item->judul }}">
+
+                                            <div class="event-content bg-cyan-tp p-4 rounded-nav">
+
+                                                <h4 class="fw-bold">
+                                                    {{ $item->judul }}
+                                                </h4>
+
+                                                <h6 class="mb-2 hijau-1">
+                                                    Lokasi: {{ $item->location }}
+                                                </h6>
+
+                                                <p class="mb-4">
+                                                    Deadline : {{ $item->deadline }}
+                                                </p>
+
                                                 <div class="d-flex align-items-center justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDCarerr', ['career' => $career->slug]) }}">Read
-                                                        More</a>
+
+                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4"
+                                                        href="{{ route('HalamanDCarerr', ['career' => $item->slug]) }}">
+
+                                                        Read More
+
+                                                    </a>
+
                                                 </div>
 
                                             </div>
+
                                         </div>
+
                                     </div>
-                                @endif
-                            @endforeach
+                                @endforeach
+
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-regulation" role="tabpanel"
-                        aria-labelledby="pills-regulation-tab" tabindex="0">
-
-                        <div class="row justify-content-center mt-5 ">
-                            {{-- Teknik Sipil --}}
-                            @foreach ($careersss as $careersss)
-                                @if ($careersss->Rkategori_career && $careersss->Rkategori_career->nama == 'Teknik Sipil')
-                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                        <div class="event-item ">
-                                            <img src="{{ $careersss->foto }}" class="img-fluid w-100 rounded-atas"
-                                                alt="Image">
-                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                                <h4 class="fw-bold">{{ $careersss->judul }}</h4>
-                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careersss->location }}</h6>
-                                                <p class="mb-4">Dealine : {{ $careersss->deadline }}</p>
-                                                <div class="d-flex align-items-center justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDCarerr', ['career' => $career->slug]) }}">Read
-                                                        More</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-mep" role="tabpanel" aria-labelledby="pills-regulation-tab"
-                        tabindex="0">
-
-                        <div class="row justify-content-center mt-5 ">
-                            {{-- MEP --}}
-                            @foreach ($careermep as $careermeps)
-                                @if ($careermeps->Rkategori_career && $careermeps->Rkategori_career->nama == 'MEP')
-                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                        <div class="event-item ">
-                                            <img src="{{ $careermeps->foto }}" class="img-fluid w-100 rounded-atas"
-                                                alt="Image">
-                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                                <h4 class="fw-bold">{{ $careermeps->judul }}</h4>
-                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careermeps->location }}</h6>
-                                                <p class="mb-4">Dealine : {{ $careermeps->deadline }}</p>
-                                                <div class="d-flex align-items-center justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDCarerr', ['career' => $careermeps->slug]) }}">Read
-                                                        More</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-bim" role="tabpanel" aria-labelledby="pills-bim-tab"
-                        tabindex="0">
-
-                        <div class="row justify-content-center mt-5 ">
-                            {{-- Bim --}}
-                            @foreach ($careerbim as $careerbim)
-                                @if ($careerbim->Rkategori_career && $careerbim->Rkategori_career->nama == 'BIM')
-                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                        <div class="event-item ">
-                                            <img src="{{ $careerbim->foto }}" class="img-fluid w-100 rounded-atas"
-                                                alt="Image">
-                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                                <h4 class="fw-bold">{{ $careerbim->judul }}</h4>
-                                                <h6 class="mb-2 hijau-1">Lokasi: {{ $careerbim->location }}</h6>
-                                                <p class="mb-4">Dealine : {{ $careerbim->deadline }}</p>
-                                                <div class="d-flex align-items-center justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDCarerr', ['career' => $careerbim->slug]) }}">Read
-                                                        More</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-workshop" role="tabpanel" aria-labelledby="pills-workshop-tab"
+                    @endforeach
+                    {{-- akhir dinamis --}}
+                    <div class="tab-pane fade" id="pills-outdate" role="tabpanel" aria-labelledby="pills-workshop-tab"
                         tabindex="0">
 
                         <div class="row justify-content-center mt-5 ">

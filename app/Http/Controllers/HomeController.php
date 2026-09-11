@@ -68,17 +68,23 @@ class HomeController extends Controller
     {
         $blog = Blog::orderBy('id', 'desc')->get();
         $blogs = Blog::latest()->take(5)->get();
-        $blogss = Blog::get();
-        $blogsss = Blog::get();
-        $blogssss = Blog::get();
-        $rblogssss = Blog::get();
+        $kategori_blogs = Kategori_Blog::with([
+            'blogs' => function ($query) {
+                $query->orderBy('id', 'desc');
+            }
+        ])->get();
+        // $blogss = Blog::get();
+        // $blogsss = Blog::get();
+        // $blogssss = Blog::get();
+        // $rblogssss = Blog::get();
         return view('frontend.pages.blog', compact(
             'blog',
             'blogs',
-            'blogss',
-            'blogsss',
-            'blogssss',
-            'rblogssss'
+            'kategori_blogs'
+            // 'blogss',
+            // 'blogsss',
+            // 'blogssss',
+            // 'rblogssss'
         ));
     }
     public function dblog($slug)
@@ -91,23 +97,40 @@ class HomeController extends Controller
     }
     public function carerr()
     {
-        $career = Career::orderBy('id', 'desc')->get();
-        $careers = Career::latest()->take(5)->get();
-        $careerss = Career::get();
-        $careersss = Career::get();
+        $career = Career::whereDate('deadline', '>=', Carbon::today())->orderBy('id', 'desc')->get();
         $careerssss = Career::get();
-        $careermep = Career::get();
-        $careerbim = Career::get();
+        $kategori_careers = Kategori_Career::with([
+            'careers' => function ($query) {
+                $query->whereDate('deadline', '>=', Carbon::today())
+                    ->orderBy('id', 'desc');
+            }
+        ])->get();
+
         return view('frontend.pages.carerr', compact(
             'career',
-            'careers',
-            'careerss',
-            'careersss',
-            'careerssss',
-            'careermep',
-            'careerbim'
+            'kategori_careers',
+            'careerssss'
         ));
     }
+    // public function carerr()
+    // {
+    //     $career = Career::orderBy('id', 'desc')->get();
+    //     $careers = Career::latest()->take(5)->get();
+    //     $careerss = Career::get();
+    //     $careersss = Career::get();
+    //     $careerssss = Career::get();
+    //     $careermep = Career::get();
+    //     $careerbim = Career::get();
+    //     return view('frontend.pages.carerr', compact(
+    //         'career',
+    //         'careers',
+    //         'careerss',
+    //         'careersss',
+    //         'careerssss',
+    //         'careermep',
+    //         'careerbim'
+    //     ));
+    // }
     public function dcarerr($slug)
     {
         $career = Career::where('slug', $slug)->firstOrFail();

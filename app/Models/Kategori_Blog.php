@@ -10,4 +10,13 @@ class Kategori_Blog extends Model
     use HasFactory;
     protected $table = 'kategori_blog';
     protected $guarded = [];
+
+    public function blogs()
+    {
+        return $this->hasMany(
+            Blog::class,
+            'kategori_id',
+            'id'
+        );
+    }
 }

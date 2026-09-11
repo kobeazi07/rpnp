@@ -32,14 +32,16 @@
                         Trends
                     </button>
                 </li>
-                <li class="nav-item col-lg-2 " role="presentation">
-                    <button class="nav-link w-100 rounded-btn fw-bold" id="pills-innovation-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-innovation" type="button" role="tab" aria-controls="pills-innovation"
-                        aria-selected="false">
-                        Innovations
-                    </button>
-                </li>
-                <li class="nav-item col-lg-2" role="presentation">
+                @foreach ($kategori_blogs as $kategori)
+                    <li class="nav-item col-lg-2 " role="presentation">
+                        <button class="nav-link w-100 rounded-btn fw-bold" id="pills-kategori-{{ $kategori->id }}-tab"
+                            data-bs-toggle="pill" data-bs-target="#pills-kategori-{{ $kategori->id }}" type="button"
+                            role="tab" aria-controls="pills-kategori-{{ $kategori->id }}" aria-selected="false">
+                            {{ $kategori->nama }}
+                        </button>
+                    </li>
+                @endforeach
+                {{-- <li class="nav-item col-lg-2" role="presentation">
                     <button class="nav-link w-100 rounded-btn fw-bold" id="pills-regulation-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-regulation" type="button" role="tab" aria-controls="pills-regulation"
                         aria-selected="false">
@@ -59,7 +61,7 @@
                         aria-selected="false">
                         Asociation
                     </button>
-                </li>
+                </li> --}}
             </ul>
             <div class="row">
                 <div class="tab-content" id="pills-tabContent">
@@ -103,8 +105,7 @@
 
                                 <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
                                     <div class="event-item ">
-                                        <img src="{{ $blogs->foto }}" class="img-fluid w-100 rounded-atas"
-                                            alt="Image">
+                                        <img src="{{ $blogs->foto }}" class="img-fluid w-100 rounded-atas" alt="Image">
                                         <div class="event-content bg-cyan-tp  p-4 rounded-nav">
 
                                             <h4 class="fw-bold blog-title-2-line">
@@ -127,12 +128,12 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pills-innovation" role="tabpanel"
-                        aria-labelledby="pills-innovation-tab" tabindex="0">
+                    @foreach ($kategori_blogs as $kategori)
+                        <div class="tab-pane fade" id="pills-kategori-{{ $kategori->id }}" role="tabpanel"
+                            aria-labelledby="pills-kategori-{{ $kategori->id }}-tab" tabindex="0">
 
-                        <div class="row justify-content-center mt-5 ">
-                            @foreach ($blogss as $blogss)
-                                @if ($blogss->rkategori_blog && $blogss->rkategori_blog->nama == 'Innovations')
+                            <div class="row justify-content-center mt-5 ">
+                                @foreach ($kategori->blogs as $blogss)
                                     {{-- Innovations --}}
                                     <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
                                         <div class="event-item ">
@@ -157,112 +158,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endif
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-regulation" role="tabpanel"
-                        aria-labelledby="pills-regulation-tab" tabindex="0">
-
-                        <div class="row justify-content-center mt-5 ">
-                            @foreach ($rblogssss as $rblogssss)
-                                @if ($rblogssss->rkategori_blog && $rblogssss->rkategori_blog->nama == 'Regulation')
-                                    {{-- Regulation --}}
-                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                        <div class="event-item ">
-                                            <img src="{{ $rblogssss->foto }}" class="img-fluid w-100 rounded-atas"
-                                                alt="Image">
-                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                                <h4 class="fw-bold blog-title-2-line">
-                                                    {{ $blog->judul }}
-                                                </h4>
-
-                                                <div class="blog-description-2-line">
-                                                    {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
-                                                </div>
-                                                <div class="d-flex align-items-center mt-4 justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
-                                                        Read More
-                                                    </a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-workshop" role="tabpanel" aria-labelledby="pills-workshop-tab"
-                        tabindex="0">
-
-                        <div class="row justify-content-center mt-5 ">
-                            @foreach ($blogsss as $blogsss)
-                                @if ($blogsss->rkategori_blog && $blogsss->rkategori_blog->nama == 'Workshop')
-                                    {{-- Workshop --}}
-                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                        <div class="event-item ">
-                                            <img src="{{ $blogsss->foto }}" class="img-fluid w-100 rounded-atas"
-                                                alt="Image">
-                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                                <h4 class="fw-bold blog-title-2-line">
-                                                    {{ $blog->judul }}
-                                                </h4>
-
-                                                <div class="blog-description-2-line">
-                                                    {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
-                                                </div>
-                                                <div class="d-flex align-items-center mt-4 justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
-                                                        Read More
-                                                    </a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-asociation" role="tabpanel"
-                        aria-labelledby="pills-asociation-tab" tabindex="0">
-
-                        <div class="row justify-content-center mt-5 ">
-                            @foreach ($blogssss as $blogssss)
-                                @if ($blogssss->rkategori_blog && $blogssss->rkategori_blog->nama == 'Asociation')
-                                    {{-- association --}}
-                                    <div class="col-lg-3 mb-5 me-1 ms-1 d-flex justify-content-center">
-                                        <div class="event-item ">
-                                            <img src="{{ $blogssss->foto }}" class="img-fluid w-100 rounded-atas"
-                                                alt="Image">
-                                            <div class="event-content bg-cyan-tp  p-4 rounded-nav">
-
-                                                <h4 class="fw-bold blog-title-2-line">
-                                                    {{ $blog->judul }}
-                                                </h4>
-
-                                                <div class="blog-description-2-line">
-                                                    {!! str_replace('&nbsp;', ' ', $blog->deskripsi) !!}
-                                                </div>
-                                                <div class="d-flex align-items-center mt-4 justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDBlog', ['blog' => $blog->slug]) }}">
-                                                        Read More
-                                                    </a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

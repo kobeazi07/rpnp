@@ -10,4 +10,14 @@ class Kategori_Career extends Model
     use HasFactory;
     protected $table = 'kategori_career';
     protected $guarded = [];
+
+
+    public function careers()
+    {
+        return $this->hasMany(
+            Career::class,
+            'kategori_career',
+            'id'
+        );
+    }
 }
