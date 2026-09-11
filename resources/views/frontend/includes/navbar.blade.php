@@ -7,7 +7,9 @@
               <div class="row align-items-center justify-content-center">
                   <div class="col-md-8">
                       <div class="topbar-info d-flex flex-wrap">
-                          <a href="mailto:{{ $setting->email }}" class="text-light me-3"><i
+                          {{-- <a href="mailto:{{ $setting->email }}" class="text-light me-3"><i
+                                  class="fas fa-envelope text-white"></i></a> --}}
+                          <a href="{{ Route('HalamanContact') }}" class="text-light me-3"><i
                                   class="fas fa-envelope text-white"></i></a>
                           <a href="https://api.whatsapp.com/send?phone={{ preg_replace('/^0/', '62', $setting->no_wa) }}&text={{ $setting->text_wa }}"
                               class="text-light"><i class="fas fa-phone-alt text-white me-2"></i></a>

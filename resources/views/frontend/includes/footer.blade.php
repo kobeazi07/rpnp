@@ -38,6 +38,7 @@
                       <a href="{{ route('HalamanHome') }}#portfolio">Portfolio</a>
                       <a href="{{ route('HalamanCarerr') }}">Carerr</a>
                       <a href="{{ route('HalamanBlog') }}"> Blog</a>
+                      <a href="{{ route('HalamanContact') }}"> Contact</a>
                   </div>
               </div>
 

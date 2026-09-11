@@ -24,7 +24,7 @@
                             solutions together.
 
                         </p>
-                        <form action="{{ route('contact.send') }}" method="POST">
+                        {{-- <form action="{{ route('contact.send') }}" method="POST">
                             @csrf
                             <input type="hidden" name="setting_email" value="{{ $setting->email }}">
                             <div class="row gx-4 gy-3">
@@ -54,6 +54,52 @@
                                         Submit
                                     </button>
                                 </div>
+                            </div>
+                        </form> --}}
+                        <form action="{{ route('contact.send') }}" method="POST" id="contactForm">
+                            @csrf
+
+                            <input type="hidden" name="setting_email" value="{{ $setting->email }}">
+
+                            <div class="row gx-4 gy-3">
+
+                                <div class="col-xl-6">
+                                    <input type="text" class="form-control bg-white rounded-btn border-0 py-3 px-4"
+                                        placeholder="Your First Name" name="first_name">
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <input type="email" class="form-control bg-white rounded-btn border-0 py-3 px-4"
+                                        placeholder="Your Email" name="email">
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <input type="number" class="form-control bg-white rounded-btn border-0 py-3 px-4"
+                                        placeholder="Your Phone" name="phone">
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <input type="text" class="form-control bg-white rounded-btn border-0 py-3 px-4"
+                                        placeholder="Subject" name="subject">
+                                </div>
+
+                                <div class="col-12">
+                                    <textarea class="form-control bg-white rounded-btn border-0 py-3 px-4" rows="7" placeholder="Your Message"
+                                        name="message"></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn-hover-bg bg-hijau-1 text-white rounded-btn w-100 py-3 px-5"
+                                        type="submit" id="btnSubmit">
+
+                                        <span id="btnText">Submit</span>
+                                        <span id="btnLoading" style="display:none;">
+                                            Sending...
+                                        </span>
+
+                                    </button>
+                                </div>
+
                             </div>
                         </form>
                     </div>

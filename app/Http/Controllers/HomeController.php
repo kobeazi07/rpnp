@@ -26,6 +26,7 @@ use App\Models\Setting;
 use App\Models\About;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 
 class HomeController extends Controller
 {
@@ -149,50 +150,182 @@ class HomeController extends Controller
         $setting = Setting::first();
         return view('frontend.pages.contact', compact('setting'));
     }
+    // public function send(Request $request)
+    // {
+    //     $request->validate([
+    //         'first_name' => [
+    //             'required',
+    //             'string',
+    //             'max:100',
+    //             'regex:/^[\pL\s\'.-]+$/u',
+    //         ],
+
+    //         'email' => [
+    //             'required',
+    //             'email',
+    //             'max:255',
+    //         ],
+
+    //         'phone' => [
+    //             'required',
+    //             'string',
+    //             'max:20',
+    //             'regex:/^[0-9+\-\s()]+$/',
+    //         ],
+
+    //         'subject' => [
+    //             'required',
+    //             'string',
+    //             'max:200',
+    //             'regex:/^[^<>]*$/',
+    //         ],
+
+    //         'message' => [
+    //             'required',
+    //             'string',
+    //             'max:5000',
+    //             'regex:/^[^<>]*$/',
+    //         ],
+    //     ]);
+
+    //     Mail::send(
+    //         'emails.contact',
+    //         [
+    //             'first_name' => $request->first_name,
+    //             'email'      => $request->email,
+    //             'phone'      => $request->phone,
+    //             'subject'    => $request->subject,
+    //             'content'    => $request->message,
+    //         ],
+    //         function ($mail) use ($request) {
+
+    //             // Pengirim tetap akun Gmail SMTP
+    //             $mail->from(
+    //                 config('mail.from.address'),
+    //                 config('mail.from.name')
+    //             );
+
+    //             // Email tujuan
+    //             $mail->to('kobeazi07@gmail.com');
+
+    //             // Ketika tombol Reply ditekan,
+    //             // balasan dikirim ke email pengunjung
+    //             $mail->replyTo(
+    //                 $request->email,
+    //                 $request->first_name
+    //             );
+
+    //             $mail->subject($request->subject);
+    //         }
+    //     );
+
+    //     return back()->with(
+    //         'success',
+    //         'Your message has been sent successfully.'
+    //     );
+    // }
     public function send(Request $request)
     {
-        $request->validate([
-            'first_name' => 'required',
-            'email'      => 'required|email',
-            'phone'      => 'required',
-            'subject'    => 'required',
-            'message'    => 'required',
-        ]);
+        try {
 
-        Mail::send(
-            'emails.contact',
-            [
-                'first_name' => $request->first_name,
-                'email'      => $request->email,
-                'phone'      => $request->phone,
-                'subject'    => $request->subject,
-                'content'    => $request->message,
-            ],
-            function ($mail) use ($request) {
+            $validated = $request->validate([
+                'first_name' => [
+                    'required',
+                    'string',
+                    'max:100',
+                    'regex:/^[\pL\s]+$/u',
+                ],
 
-                // Pengirim tetap akun Gmail SMTP
-                $mail->from(
-                    config('mail.from.address'),
-                    config('mail.from.name')
-                );
+                'email' => [
+                    'required',
+                    'email',
+                    'max:255',
+                ],
 
-                // Email tujuan
-                $mail->to('kobeazi07@gmail.com');
+                'phone' => [
+                    'required',
+                    'string',
+                    'max:20',
+                    'regex:/^[0-9+\-\s()]+$/',
+                ],
 
-                // Ketika tombol Reply ditekan,
-                // balasan dikirim ke email pengunjung
-                $mail->replyTo(
-                    $request->email,
-                    $request->first_name
-                );
+                'subject' => [
+                    'required',
+                    'string',
+                    'max:200',
+                    'regex:/^[\pL\pN\s]+$/u',
+                ],
 
-                $mail->subject($request->subject);
-            }
-        );
+                'message' => [
+                    'required',
+                    'string',
+                    'max:5000',
+                    'regex:/^[\pL\pN\s]+$/u',
+                ],
+            ], [
 
-        return back()->with(
-            'success',
-            'Your message has been sent successfully.'
-        );
+                'first_name.required' => 'Nama depan wajib diisi.',
+                'first_name.regex' => 'Nama depan hanya boleh menggunakan huruf dan spasi.',
+
+                'email.required' => 'Email wajib diisi.',
+                'email.email' => 'Format email tidak valid.',
+
+                'phone.required' => 'Nomor telepon wajib diisi.',
+                'phone.regex' => 'Nomor telepon hanya boleh menggunakan angka.',
+
+                'subject.required' => 'Subject wajib diisi.',
+                'subject.regex' => 'Subject tidak boleh menggunakan simbol.',
+
+                'message.required' => 'Pesan wajib diisi.',
+                'message.regex' => 'Pesan tidak boleh menggunakan simbol.',
+
+                '*.max' => 'Input terlalu panjang.',
+            ]);
+
+            Mail::send(
+                'emails.contact',
+                [
+                    'first_name' => $validated['first_name'],
+                    'email'      => $validated['email'],
+                    'phone'      => $validated['phone'],
+                    'subject'    => $validated['subject'],
+                    'content'    => $validated['message'],
+                ],
+                function ($mail) use ($validated) {
+
+                    $mail->from(
+                        config('mail.from.address'),
+                        config('mail.from.name')
+                    );
+
+                    $mail->to('kobeazi07@gmail.com');
+
+                    $mail->replyTo(
+                        $validated['email'],
+                        $validated['first_name']
+                    );
+
+                    $mail->subject($validated['subject']);
+                }
+            );
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Your message has been sent successfully.'
+            ]);
+        } catch (ValidationException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Please check your input.',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, your message could not be sent. Please try again.'
+            ], 500);
+        }
     }
 }
