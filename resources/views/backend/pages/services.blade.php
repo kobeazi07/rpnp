@@ -169,7 +169,7 @@
         </div>
 
     </div>
-    <!-- /.container-fluid -->
+    <!-- /.container-f uid -->
 
     </div>
     </div>

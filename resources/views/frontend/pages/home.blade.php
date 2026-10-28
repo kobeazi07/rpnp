@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-xl-7">
 
-                    <h2 class="mb-4">Our goal is a ustainable future for people and nature</h2>
+                    <h2 class="mb-4">Our goal is a Sustainable future for people and nature</h2>
                     <p class="fs-5 mb-4">Our goal is a sustainable future for people and nature. Discover who we are and how
                         our vision and mission inspire us to create innovative, sustainable, and environmentally responsible
                         solutions for a better future.

@@ -16,7 +16,7 @@ Route::post('/contact/send', [HomeController::class, 'send'])->name('contact.sen
 
 Route::get('/admin', [MasterController::class, 'halamanlogin'])->name('HalamanLogin');
 Route::post('/login', [MasterController::class, 'login'])->name('login');
-Route::post('/logout', [MasterController::class, 'user_logout'])->name('Logout');
+Route::post('/logout', [MasterController::class, 'user_logout'])->name('Logout');]
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/dashboard', [MasterController::class, 'dashboard'])->name('HalamanDashboard');
