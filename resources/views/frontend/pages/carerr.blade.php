@@ -206,9 +206,10 @@
                                                 <h6 class="mb-2 hijau-1">Lokasi: {{ $careerssss->location }}</h6>
                                                 <p class="mb-4">Dealine : {{ $careerssss->deadline }}</p>
                                                 <div class="d-flex align-items-center justify-content-start">
-                                                    <a class="btn-hover-bg rounded-btn w-100 btn btn-primary text-white py-2 px-4 rounded-btn"
-                                                        href="{{ route('HalamanDCarerr', ['career' => $career->slug]) }}">Read
-                                                        More</a>
+                                                    <a
+                                                        href="{{ route('HalamanDCarerr', ['career' => $careerssss->slug]) }}">
+                                                        Read More
+                                                    </a>
                                                 </div>
 
                                             </div>
